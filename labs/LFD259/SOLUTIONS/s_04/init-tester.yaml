@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-tester
+  labels:
+    app: inittest
+spec:
+  containers:
+  - name: webservice
+    image: nginx
+  initContainers:
+  - name: failed
+    image: busybox
+    command: [/bin/false]
+

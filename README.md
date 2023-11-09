@@ -1,4 +1,4 @@
-# Milien Homelab Kubernetes Setup
+# MaximUltimatum Homelab Kubernetes Setup
 
 Folders will be added as they are converted to use SealedSecrets so this repo can be public facing
 

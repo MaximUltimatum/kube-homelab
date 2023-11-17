@@ -6,3 +6,4 @@ Folders will be added as they are converted to use SealedSecrets so this repo ca
 This repo contains:
 - Nextcloud helm chart and configuration
 - Cert management helm chart
+- Ingress configuration

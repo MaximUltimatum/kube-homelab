@@ -93,15 +93,15 @@ nextcloud:
     subPath:
   mail:
     enabled: true
-    fromAddress: anyAdress
-    domain: gmail.com
+    fromAddress: postmaster
+    domain: mg.maximstroud.de
     smtp:
-      host: smtp.gmail.com
+      host: smtp.mailgun.com
       secure: ssl
       port: 587
       authtype: LOGIN
-      name: ""
-      password: ""
+      name: "postmaster@mg.maximstroud.de"
+      password: "ddb1db9d7f890bb2c76953295d510f05-1c7e8847-558ca5a2"
   # PHP Configuration files
   # Will be injected in /usr/local/etc/php/conf.d for apache image and in /usr/local/etc/php-fpm.d when nginx.enabled: true
   phpConfigs: {}

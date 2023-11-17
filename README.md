@@ -1,6 +1,6 @@
 # MaximUltimatum Homelab Kubernetes Setup
 
-Folders will be added as they are converted to use SealedSecrets so this repo can be public facing
+This repo uses SealedSecrets to allow version control on secrets
 
 ## Purposes
 This repo contains:

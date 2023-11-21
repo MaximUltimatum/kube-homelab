@@ -96,9 +96,9 @@ nextcloud:
     fromAddress: postmaster
     domain: mg.maximstroud.de
     smtp:
-      host: smtp.mailgun.com
+      host: smtp.mailgun.org
       secure: ssl
-      port: 587
+      port: 465
       authtype: LOGIN
       name: ""
       password: ""
@@ -138,14 +138,6 @@ nextcloud:
       <?php
       $CONFIG = array (
         'trusted_proxies' => '10.233.0.0/16',
-      );
-    logging.config.php: |-
-      <?php
-      $CONFIG = array (
-        'log_type' => 'file',
-        'logfile' => 'nextcloud.log',
-        'loglevel' => 2,
-        'logdateformat' => 'F d, Y H:i:s'
       );
 
   # For example, to use S3 as primary storage

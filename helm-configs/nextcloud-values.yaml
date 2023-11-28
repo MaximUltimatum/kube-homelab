@@ -41,6 +41,8 @@ ingress:
       location = /.well-known/caldav {
         return 301 $scheme://$host/remote.php/dav;
       }
+      client_max_body_size 10G;
+      client_body_buffer_size 400M;
       # location = /robots.txt {
       #   allow all;
       #   log_not_found off;
@@ -143,6 +145,23 @@ nextcloud:
       <?php
       $CONFIG = array (
         'default_phone_region' => 'US',
+      );
+    default.filesize.config.php: |-
+      <?php
+      $CONFIG = array (
+        'upload_max_filesize' => '10G',
+        'post_max_size' => '10G',
+        'client_max_body_size' => '10G',
+        'client_body_buffer_size' => '400M',
+      );
+
+    logging.config.php: |-
+      <?php
+      $CONFIG = array (
+        'log_type' => 'file',
+        'logfile' => 'nextcloud.log',
+        'loglevel' => 0,
+        'logdateformat' => 'F d, Y H:i:s'
       );
 
   # For example, to use S3 as primary storage

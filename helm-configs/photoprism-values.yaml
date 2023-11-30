@@ -6,8 +6,8 @@ image:
   tag: "20211215"
   pullPolicy: IfNotPresent
 
-nameOverride: "Insight"
-fullnameOverride: "ProjectInsight"
+nameOverride: "insight"
+fullnameOverride: "project-insight"
 
 # Defaults to 'photoprism'
 #adminPassword: ""

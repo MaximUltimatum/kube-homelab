@@ -65,11 +65,16 @@ service:
 
 ingress:
   enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
   hosts:
   - host: project-insight.maximstroud.de
     paths:
     - /
-  tls: []
+  tls:
+  - hosts:
+     - project-insight.maximstroud.de
+    secretName: maximstroud.de-cert
 
 # securityContext:
 #   fsGroup: 100

@@ -98,14 +98,15 @@ config:
   serial:
     # Location of your zigbee device
     port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2444801-if00
-    # additionalVolumeMounts:
-    #   - name: usb
-    #     mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2444801-if00
+    adapter: deconz
+    additionalVolumeMounts:
+      - name: usb
+        mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2444801-if00
 
-    # additionalVolumes:
-    #   - name: usb
-    #     hostPath:
-    #       path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2444801-if00
+    additionalVolumes:
+      - name: usb
+        hostPath:
+          path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2444801-if00
 
     # Optional: adapter type, not needed unless you are experiencing problems (options: zstack, deconz)
     # adapter: deconz

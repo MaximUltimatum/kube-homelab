@@ -65,6 +65,7 @@ service:
 
 ingress:
   enabled: true
+  ingressClassName: "nginx"
   hosts:
   - host: project-insight.maximstroud.de
     paths:

@@ -2,8 +2,8 @@
 
 image:
   repository: photoprism/photoprism
-  # TODO: Update this to a more recent tag once it's running successfully
-  tag: "20211215"
+  #New tag, in testing
+  tag: "231128"
   pullPolicy: IfNotPresent
 
 nameOverride: "insight"

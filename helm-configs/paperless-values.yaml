@@ -34,18 +34,44 @@ service:
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
   # @default -- See [values.yaml](./values.yaml)
+  metadata:
+    name: nginx
   main:
-    enabled: false
+    enabled: true
     annotations:
       nginx.ingress.kubernetes.io/proxy-body-size: 64m
-    # hosts:
-    #   - host: chart-example.local
-    #     paths:
-    #       - path: /
+    hosts:
+    - host: project-tahiti
+      paths:
+        - path: /
+    defaultBackend:
+      service:
+        name: tahiti-paperless-ngx
+        port:
+          number: 8000
+    ingressClassName: tailscale
+    tls:
+    - hosts:
+      - project-tahiti
     # tls:
     #   - secretName: chart-example.local
     #     hosts:
     #       - chart-example.local
+    #
+        
+        #from tailscale
+        #metadata:
+        #  name: nginx
+        #spec:
+        #  defaultBackend:
+        #    service:
+        #      name: nginx
+        #      port:
+        #        number: 80
+        #  ingressClassName: tailscale
+        #  tls:
+        #  - hosts:
+        #    - nginx
 
 persistence:
   # -- Configure data volume settings for the chart under this key.

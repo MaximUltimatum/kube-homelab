@@ -19,10 +19,6 @@ env:
   # -- Set the container timezone
   TZ: UTC
   PAPERLESS_SECRET_KEY: "paperless-secrets"
-  PAPERLESS_ADMIN_USER: coulson
-  PAPERLESS_ADMIN_PASSWORD: refund-on-this-spa-sterile
-  PAPERLESS_URL: https://project-tahiti.kingfisher-halfmoon.ts.net
-  # PAPERLESS_DBPASS: enroll-magical-place-sucked
 
 service:
   # -- Configures service settings for the chart.

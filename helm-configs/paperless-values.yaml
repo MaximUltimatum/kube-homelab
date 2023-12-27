@@ -20,6 +20,7 @@ env:
   TZ: UTC
   PAPERLESS_SECRET_KEY: "paperless-secrets"
   PAPERLESS_URL: "https://project-tahiti.kingfisher-halfmoon.ts.net"
+  PAPERLESS_CONSUMER_POLLING: 5
 
 service:
   # -- Configures service settings for the chart.

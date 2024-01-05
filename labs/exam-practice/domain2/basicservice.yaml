@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: anyoldservice
+spec:
+  type: NodePort
+  selector:
+    pickme: anyoldname
+  ports:
+    - protocol: TCP
+      port: 80

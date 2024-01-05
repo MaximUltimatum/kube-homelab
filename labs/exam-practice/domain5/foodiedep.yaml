@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foodie
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      volumes:
+        - name: menu
+          secret:
+            secretName: specialofday
+        - name: reviewpvc
+          persistentVolumeClaim:
+            claimName: reviewpvc
+      containers:
+      - name: nginx-foodie
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - name: menu
+            mountPath: /menu
+          - name: reviewpvc
+            mountPath: /newvol

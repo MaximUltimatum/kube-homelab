@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sleepycron
+spec:
+  schedule: "*/3 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: busyboi
+            image: busybox:latest
+            command:
+            - /bin/sh
+            - -c
+            - sleep 30
+          restartPolicy: OnFailure

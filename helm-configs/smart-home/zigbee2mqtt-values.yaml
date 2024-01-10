@@ -31,7 +31,23 @@ ingress:
   # -- Enable and configure ingress settings for the chart under this key.
   # @default -- See values.yaml
   main:
-    enabled: false
+    enabled: true
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: 64m
+    hosts:
+    - host: project-mosquitto
+      paths:
+        - path: /
+    defaultBackend:
+      service:
+        name: zigbee2mqtt
+        port:
+          number: 8080
+    ingressClassName: tailscale
+    tls:
+    - hosts:
+      - project-mosquitto
+
 
 securityContext:
   # -- (bool) Privileged securityContext may be required if USB controller is accessed directly through the host machine

@@ -8,7 +8,5 @@ This repo contains:
 _Also used for testing on contributions I make to the upstream nextcloud-helm repo_
 ## HomeAssistant helm chart and configuration
 _This is pulled from k8s-at-home. The chart is a hybrid of k8s-at-home and recent updates pulled in from other users_
-## Photoprism helm chart and configuration
-_The upstream repo for this hasn't gotten any attention for several years at this point. I love this project, and will be maintaining [my chart](https://github.com/MaximUltimatum/photoprism-helm). Please feel free to fork it, and make an issue if something is out of date. At some point in the future I intend to reach out to the photoprism folks and see if I can become the official maintainer._
 ## Cert management helm chart
 ## Ingress configuration

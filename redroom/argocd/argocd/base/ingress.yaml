@@ -1,58 +1,18 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: argocd-server
+  name: argocd-tailscale-ingress
   namespace: argocd
 spec:
-  entryPoints:
-    - websecure
-  routes:
-    - kind: Rule
-      match: Host(`argo.jackhil.de`)
-      priority: 10
-      services:
-        - name: argocd-server
-          port: 80
-      middlewares:
-      - name: redirect-http-2-https
-        namespace: traefik
-    - kind: Rule
-      match: Host(`argo.jackhil.de`) && Headers(`Content-Type`, `application/grpc`)
-      priority: 11
-      services:
-        - name: argocd-server
-          port: 80
-          scheme: h2c
-  tls:
-    secretName: jsck.network-cert
-
----
-
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: argocd-server-upgrade-conn
-  namespace: argocd
-spec:
-  entryPoints:
-    - web
-  routes:
-    - kind: Rule
-      match: Host(`argo.jackhil.de`)
-      priority: 10
-      services:
-        - name: argocd-server
-          port: 80
-      middlewares:
-      - name: redirect-http-2-https
-        namespace: traefik
-    - kind: Rule
-      match: Host(`argo.jackhil.de`) && Headers(`Content-Type`, `application/grpc`)
-      priority: 11
-      services:
-        - name: argocd-server
-          port: 80
-          scheme: h2c
-      middlewares:
-      - name: redirect-http-2-https
-        namespace: traefik
+  ingressClassName: tailscale
+  rules:
+  - host: argocd
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argocd-server
+            port:
+              name: http

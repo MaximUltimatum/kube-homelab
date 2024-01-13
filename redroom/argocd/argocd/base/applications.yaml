@@ -10,9 +10,9 @@ spec:
         files:
           - path: redroom/*/*/values.yaml
         values:
-          base_dir: "redroom/{{ path[2] }}/{{ path[3] }}"
-          app_name: "{{ path[3] }}"
-          namespace: "{{ path[2] }}"
+          base_dir: "redroom/{{ path[1] }}/{{ path[2] }}"
+          app_name: "{{ path[2] }}"
+          namespace: "{{ path[1] }}"
   template:
     metadata:
       name: "{{ values.app_name }}"
@@ -48,9 +48,9 @@ spec:
         files:
           - path: redroom/*/*/kustomization.yaml
         values:
-          base_dir: "redroom/{{ path[2] }}/{{ path[3] }}"
-          app_name: "{{ path[3] }}"
-          namespace: "{{ path[2] }}"
+          base_dir: "redroom/{{ path[1] }}/{{ path[2] }}"
+          app_name: "{{ path[2] }}"
+          namespace: "{{ path[1] }}"
   template:
     metadata:
       name: "{{ values.app_name }}"

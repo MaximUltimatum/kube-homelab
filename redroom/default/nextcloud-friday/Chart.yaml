@@ -1,0 +1,10 @@
+apiVersion: v2
+name: nextcloud-friday
+type: application
+version: 0.0.1
+sources:
+  - https://github.com/nextcloud/helm
+dependencies:
+  - name: nextcloud
+    version: 4.5.10
+    repository: "https://nextcloud.github.io/helm/"

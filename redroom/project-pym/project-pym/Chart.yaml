@@ -1,0 +1,10 @@
+apiVersion: v2
+name: project-pym
+type: application
+version: 0.0.1
+sources:
+  - https://kolaente.dev/vikunja/helm-chart/
+dependencies:
+  - name: vikunja
+    version: 0.4.1
+    repository: "oci://kolaente.dev/vikunja"

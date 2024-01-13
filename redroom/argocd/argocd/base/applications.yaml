@@ -1,0 +1,71 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: redroom-helm-appset
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/MaximUltimatum/kube-homelab.git
+        revision: HEAD
+        files:
+          - path: redroom/*/*/values.yaml
+        values:
+          base_dir: "redroom/{{ path[2] }}/{{ path[3] }}"
+          app_name: "{{ path[3] }}"
+          namespace: "{{ path[2] }}"
+  template:
+    metadata:
+      name: "{{ values.app_name }}"
+    spec:
+      project: default
+      source:
+        path: "{{ values.base_dir }}"
+        repoURL: https://github.com/MaximUltimatum/kube-homelab.git
+        targetRevision: "HEAD"
+        helm:
+          releaseName: "{{ values.app_name }}"
+          valueFiles:
+          - values.yaml
+      destination:
+        name: in-cluster
+        namespace: "{{ values.namespace }}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: redroom-kustomize-appset
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/MaximUltimatum/kube-homelab.git
+        revision: HEAD
+        files:
+          - path: redroom/*/*/kustomization.yaml
+        values:
+          base_dir: "redroom/{{ path[2] }}/{{ path[3] }}"
+          app_name: "{{ path[3] }}"
+          namespace: "{{ path[2] }}"
+  template:
+    metadata:
+      name: "{{ values.app_name }}"
+    spec:
+      project: default
+      source:
+        path: "{{ values.base_dir }}"
+        repoURL: https://github.com/MaximUltimatum/kube-homelab.git
+        targetRevision: "HEAD"
+      destination:
+        name: in-cluster
+        namespace: "{{ values.namespace }}" 
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true

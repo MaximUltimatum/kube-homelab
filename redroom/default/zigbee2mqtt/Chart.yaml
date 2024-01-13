@@ -1,0 +1,10 @@
+apiVersion: v2
+name: zigbee2mqtt
+type: application
+version: 0.0.1
+sources:
+  - https://artifacthub.io/packages/helm/k8s-at-home/zigbee2mqtt
+dependencies:
+  - name: zigbee2mqtt
+    version: 9.4.2
+    repository: "https://k8s-at-home.com/charts/"

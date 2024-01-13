@@ -1,0 +1,166 @@
+vikunja:
+  ## This chart relies on the common library chart from bjw-s
+  ## You can find it and the values you can provide and modify, at https://github.com/bjw-s/helm-charts/tree/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common
+  ## Here's the link to the values.yaml file: https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml
+  ## Refer there for more detail about the supported values.
+  ## Any values that you find in the above `values.yaml` can be provided to this chart and are then rendered.
+  
+  image:
+    tag: 0.21.0
+  
+  ######################
+  # VIKUNJA COMPONENTS #
+  ######################
+  # You can find the default values that this `values.yaml` overrides, in the comment at the top of this file.
+  api:
+    enabled: true
+    image:
+      repository: vikunja/api
+      tag: 0.21.0
+      pullPolicy: IfNotPresent
+    persistence:
+      # This is your Vikunja data will live, you can either let
+      # the chart create a new PVC for you or provide an existing one.
+      data:
+        enabled: true
+        # existingClaim: # your-claim
+        accessMode: ReadWriteOnce
+        size: 10Gi
+        mountPath: /app/vikunja/files
+        # storageClass: storage-class
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          # proxy-body-size is set to 0 to remove the body limit on file uploads
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        hosts:
+        - host: project-pym-api
+          paths:
+            - path: "/api/v1"
+        defaultBackend:
+          service:
+            name: vikunja
+        ingressClassName: tailscale
+        tls:
+        - hosts:
+          - project-pym-api
+    configMaps:
+      # The configuration for Vikunja's api.
+      # https://vikunja.io/docs/config-options/
+      config:
+        enabled: true
+        data:
+          config.yml: |
+            # Vikunja needs to know the frontend URL for password reset emails.
+            # So you might need to provide its value, if you're not using an ingress.
+            # service:
+            #   frontendUrl: http://vikunja.local
+  
+            typesense:
+              # Typesense will only work if it is enabled below (typesense.enabled).
+              url: "{{ printf "%s-typesense" .Release.Name }}:8108"
+              apiKey: "{{ .Values.typesense.env.TYPESENSE_API_KEY }}"
+            redis:
+              # Redis will only work if it is enabled below (redis.enabled).
+              host: "{{ printf "%s-redis-master" .Release.Name }}:6379"
+              db: "{{ .Release.Name }}"
+    env:
+      # To utilize a secret in the environment variables, you can do something like the following: https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml#L141-L145
+      # You could also use MySQL or SQLite, but we recommend PostgreSQL.
+      # https://vikunja.io/docs/config-options/#type
+      VIKUNJA_DATABASE_TYPE: "postgres"
+      VIKUNJA_DATABASE_USER:
+        valueFrom:
+          secretKeyRef:
+            name: vikunja-credentials
+            key: postgres-username
+      VIKUNJA_DATABASE_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: vikunja-credentials
+            key: postgres-password
+      VIKUNJA_DATABASE_NAME:
+        valueFrom:
+          secretKeyRef:
+            name: vikunja-credentials
+            key: postgres-database
+      VIKUNJA_DATABASE_DATABASE: vikunja
+      VIKUNJA_DATABASE_HOST: project-pym-postgresql
+  
+  
+  frontend:
+    enabled: true
+    # You can add any of the top-level keys in the common chart's `values.yaml` to override them here.
+    # For example, this values.yaml file overrides the image values, located here:
+    # https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml#L63-L69
+    image:
+      repository: vikunja/frontend
+      tag: 0.21.0
+      pullPolicy: IfNotPresent
+    # You can use either a `service` or an `ingress` to interact with Vikunja's frontend.
+    # `Ingress` is the recommended option, but you can still set the `service` to
+    # `LoadBalancer` or another service type.
+    # https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml#L294-L354
+    service:
+      main:
+        type: ClusterIP
+  
+    # https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml#L393-L436
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          # proxy-body-size is set to 0 to remove the body limit on file uploads
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        hosts:
+        - host: project-pym
+          paths:
+            - path: /
+        defaultBackend:
+          service:
+            name: vikunja
+        ingressClassName: tailscale
+        tls:
+        - hosts:
+          - project-pym
+    # If you've used the "built-in" ingress in the api section, you don't need to specify VIKUNJA_API_URL as an environment variable here.
+    # If you've used something else, you'll need to provide the URL to the API here.
+    env:
+      VIKUNJA_API_URL: https://project-pym-api.kingfisher-halfmoon.ts.net/api/v1
+  
+  ##########################
+  # END VIKUNJA COMPONENTS #
+  ##########################
+  
+  # Optional Dependencies
+  postgresql:
+    enabled: true
+    global:
+      postgresql:
+        auth:
+          existingSecret: vikunja-credentials
+  
+  redis:
+    enabled: false
+    architecture: standalone
+    auth:
+      enabled: false
+  
+  typesense:
+    enabled: true
+    env:
+      TYPESENSE_DATA_DIR: /data
+      TYPESENSE_API_KEY: typesense
+    persistence:
+      data:
+        # Enabling typesense persistence is recommended to avoid slow reindexing
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 2Gi
+        # storageClass: storage-class
+  
+    image:
+      repository: docker.io/typesense/typesense
+      tag: 0.25.1
+      pullPolicy: IfNotPresent

@@ -639,9 +639,6 @@ metallb:
           - NET_ADMIN
           - NET_RAW
           - SYS_ADMIN
-    ## @param speaker.command Override default container command (useful when using custom images)
-    ##
-    command: []
     ## @param speaker.args Override default container args (useful when using custom images)
     ##
     args: []

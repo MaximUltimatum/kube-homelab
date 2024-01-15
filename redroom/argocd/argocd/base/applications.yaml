@@ -2,8 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: redroom-helm-appset
-  labels:
-    kind-request: please-find-the-cow-i-beg-you
 spec:
   generators:
     - git:

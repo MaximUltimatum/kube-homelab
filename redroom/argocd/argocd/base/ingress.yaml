@@ -5,6 +5,9 @@ metadata:
   namespace: argocd
 spec:
   ingressClassName: tailscale
+  tls:
+  - hosts:
+    - romanoff
   rules:
   - host: argocd
     http:
@@ -15,4 +18,4 @@ spec:
           service:
             name: argocd-server
             port:
-              name: http
+              number: 443

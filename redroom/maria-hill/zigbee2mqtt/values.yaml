@@ -114,7 +114,7 @@ zigbee2mqtt:
     # USB / Serial settings
     serial:
       # Location of your zigbee device
-      port: /dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20231006212704-if00
+      port: tcp://core-silabs-multiprotocol:9999
       adapter: ezsp
       additionalVolumeMounts:
         - name: usb

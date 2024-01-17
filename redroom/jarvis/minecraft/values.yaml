@@ -162,7 +162,7 @@ minecraft:
     # One of: peaceful, easy, normal, and hard
     difficulty: normal
     # A comma-separated list of player names to whitelist.
-    whitelist: Redstonator1,PencilSickly,ElegantDestro,Veymax
+    whitelist: Redstonator1,PencilSickly,ElegantDestro,Veymax,Big_Teets
     # A comma-separated list of player names who should be admins.
     ops: Redstonator1
     # A server icon URL for server listings. Auto-scaled and transcoded.

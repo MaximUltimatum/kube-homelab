@@ -1,21 +1,15 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: v1
+kind: Service
 metadata:
   name: jarviscraft
   namespace: jarvis
 spec:
-  ingressClassName: tailscale
-  tls:
-  - hosts:
-    - jarviscraft
-  rules:
-  - host: jarviscraft
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: minecraft-minecraft
-            port:
-              number: 25565
+  type: LoadBalancer
+  loadBalancerClass: tailscale
+  ports:
+  - name: minecraft
+    port: 25565
+    protocol: TCP
+    targetPort: minecraft
+  selector:
+    app: minecraft-minecraft

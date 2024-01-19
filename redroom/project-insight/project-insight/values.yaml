@@ -65,12 +65,12 @@ immich:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: tailscale
         annotations:
           # proxy-body-size is set to 0 to remove the body limit on file uploads
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
-        - host: project-insight.maximstroud.de
+        - host: project-insight
           paths:
             - path: "/"
         defaultBackend:
@@ -80,8 +80,7 @@ immich:
               number: 3001
         tls:
         - hosts:
-          - project-insight.maximstroud.de
-          secretName: maximstroud.de-cert
+          - project-insight
   
   microservices:
     enabled: true

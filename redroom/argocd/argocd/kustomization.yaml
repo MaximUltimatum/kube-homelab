@@ -4,11 +4,10 @@ kind: Kustomization
 
 resources:
 - base/repository.yaml
-- base/ingress.yaml
 - base/applications.yaml
 - https://github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.9.3
 
 namespace: argocd
 patches:
-- path: overlays/service.yaml
+- path: overlays/service-tailscale.yaml
 - path: overlays/argocd-cmd-params-cm.yaml

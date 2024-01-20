@@ -66,7 +66,7 @@ zigbee2mqtt:
     usb:
       enabled: true
       type: hostPath
-      hostPath: /dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20231006212704-if00
+      hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE3018882-if00
   
   # -- Affinity constraint rules to place the Pod on a specific node.
   # [[ref]](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
@@ -114,16 +114,15 @@ zigbee2mqtt:
     # USB / Serial settings
     serial:
       # Location of your zigbee device
-      port: tcp://core-silabs-multiprotocol:9999
-      adapter: ezsp
+      adapter: deconz
       additionalVolumeMounts:
         - name: usb
-          mountPath: /dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20231006212704-if00
+          mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE3018882-if00
   
       additionalVolumes:
         - name: usb
           hostPath:
-            path: /dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20231006212704-if00
+            path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE3018882-if00
   
       # Optional: adapter type, not needed unless you are experiencing problems (options: zstack, deconz)
       # adapter: deconz

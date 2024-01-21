@@ -19,6 +19,8 @@ zigbee2mqtt:
       enabled: false
     startup:
       enabled: false
+    readiness:
+      enabled: false
   
   # -- environment variables. See [image docs](https://www.zigbee2mqtt.io/information/configuration.html#override-via-environment-variables) for more details.
   # @default -- See below

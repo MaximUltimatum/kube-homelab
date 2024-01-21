@@ -17,7 +17,11 @@ zigbee2mqtt:
   containers:
     main:
       command:
-        - /bin/sh sleep 5000
+        - /bin/sh
+      args:
+        - -c
+        - sleep
+        - 5000
   probes:
     liveness:
       enabled: false

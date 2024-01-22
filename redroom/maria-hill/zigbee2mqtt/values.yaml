@@ -93,7 +93,8 @@ zigbee2mqtt:
           - key: app
             operator: In
             values:
-            - zigbee-controller
+            - non-existent-node
+            # - zigbee-controller
   
   # -- zigbee2mqtt configuration settings.
   # This will be copied into the container's persistent storage at first run only.

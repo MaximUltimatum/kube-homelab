@@ -33,17 +33,20 @@ home-assistant:
     # @default -- See values.yaml
     main:
       enabled: true
-      ingressClassName: "nginx"
-      labels: {}
+      ingressClassName: tailscale
       hosts:
-        - host: hass.maximstroud.de
+        - host: maria-hill
           paths:
             - path: /
               pathType: Prefix
+      defaultBackend:
+        service:
+          name: home-assistant
+          port:
+            number: 8123
       tls:
       - hosts:
-         - hass.maximstroud.de
-        secretName: maximstroud.de-cert
+         - maria-hill
   
   # -- Enable devices to be discoverable
   # hostNetwork: true
@@ -64,20 +67,20 @@ home-assistant:
       size: 12Gi
     # -- Configure a hostPathMount to mount a USB device in the container.
     # @default -- See values.yaml
-    # usb:
-    #   enabled: true
-    #   type: hostPath
-    #   hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2444801-if00
+  usb:
+    enabled: true
+    type: hostPath
+    hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE3018882-if00
   
-        # affinity:
-        #   nodeAffinity:
-        #     requiredDuringSchedulingIgnoredDuringExecution:
-        #       nodeSelectorTerms:
-        #       - matchExpressions:
-        #         - key: app
-        #           operator: In
-        #           values:
-        #           - zigbee-controller
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - zigbee-controller
   
   # -- Enable and configure mariadb database subchart under this key.
   #    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)

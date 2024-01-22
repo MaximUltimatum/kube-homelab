@@ -37,7 +37,7 @@ home-assistant:
       hosts:
       - host: maria-hill
         paths:
-          - path: /
+        - path: /
       defaultBackend:
         service:
           name: home-assistant
@@ -45,7 +45,7 @@ home-assistant:
             number: 8123
       tls:
       - hosts:
-         - maria-hill
+        - maria-hill
   
   # -- Enable devices to be discoverable
   # hostNetwork: true

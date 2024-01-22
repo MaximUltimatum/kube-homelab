@@ -35,10 +35,9 @@ home-assistant:
       enabled: true
       ingressClassName: tailscale
       hosts:
-        - host: maria-hill
-          paths:
-            - path: /
-              pathType: Prefix
+      - host: maria-hill
+        paths:
+          - path: /
       defaultBackend:
         service:
           name: home-assistant

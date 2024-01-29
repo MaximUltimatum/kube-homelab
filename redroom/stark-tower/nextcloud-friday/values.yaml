@@ -503,7 +503,7 @@ nextcloud:
   ## Prometheus Exporter / Metrics
   ##
   metrics:
-    enabled: true
+    enabled: false
   
     replicaCount: 1
     # The metrics exporter needs to know how you serve Nextcloud either http or https

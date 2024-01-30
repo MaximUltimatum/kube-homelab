@@ -11,9 +11,9 @@ spec:
     port: 443
     protocol: TCP
     targetPort: nextcloud
-  - name: nextcloud-insecure
+  - name: insecure
     port: 80
     protocol: TCP
-    targetPort: nextcloud-insecure
+    targetPort: insecure
   selector:
     app.kubernetes.io/instance: nextcloud-friday

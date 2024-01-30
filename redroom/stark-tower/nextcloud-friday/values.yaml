@@ -23,7 +23,7 @@ nextcloud:
   ##
   ingress:
     enabled: true
-    className: nginx
+    className: tailscale
     annotations:
       nginx.ingress.kubernetes.io/proxy-body-size: 4G
       kubernetes.io/tls-acme: "true"
@@ -56,9 +56,8 @@ nextcloud:
         # }
     path: "/"
     tls:
-      - secretName: maximstroud.de-cert
-        hosts:
-          - friday.maximstroud.de
+      - hosts:
+          - friday
     labels: {}
     pathType: Prefix
   

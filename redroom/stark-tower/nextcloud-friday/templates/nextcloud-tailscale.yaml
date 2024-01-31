@@ -1,8 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: friday
   namespace: stark-tower
+  annotations:
+    tailscale.com/hostname: friday
 spec:
   type: LoadBalancer
   loadBalancerClass: tailscale

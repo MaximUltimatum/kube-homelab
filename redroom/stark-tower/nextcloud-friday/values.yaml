@@ -71,7 +71,7 @@ nextcloud:
     protocol: https
   
   nextcloud:
-    host: "stark-tower-friday.kingfisher-halfmoon.ts.net"
+    host: "friday.kingfisher-halfmoon.ts.net"
     username: ""
     password: ""
     ## Use an existing secret
@@ -129,8 +129,8 @@ nextcloud:
         <?php
         $CONFIG = array (
           'overwritewebroot' => '/',
-          'overwritehost' => 'stark-tower-friday.kingfisher-halfmoon.ts.net',
-          'overwrite.cli.url' => 'https://stark-tower-friday.kingfisher-halfmoon.ts.net',
+          'overwritehost' => 'friday.kingfisher-halfmoon.ts.net',
+          'overwrite.cli.url' => 'https://friday.kingfisher-halfmoon.ts.net',
           'overwriteprotocol' => 'https',
         );
       trustedproxy.config.php: |-

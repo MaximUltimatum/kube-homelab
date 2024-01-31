@@ -7,13 +7,11 @@ spec:
   type: LoadBalancer
   loadBalancerClass: tailscale
   ports:
-  - name: nextcloud
-    port: 443
+  - name: http
+    port: 8080
     protocol: TCP
-    targetPort: nextcloud
-  - name: insecure
-    port: 80
-    protocol: TCP
-    targetPort: insecure
+    targetPort: 80
   selector:
+    app.kubernetes.io/component: app
     app.kubernetes.io/instance: nextcloud-friday
+    app.kubernetes.io/name: nextcloud

@@ -10,7 +10,7 @@ spec:
   loadBalancerClass: tailscale
   ports:
   - name: http
-    port: 8080
+    port: 443
     protocol: TCP
     targetPort: 80
   selector:

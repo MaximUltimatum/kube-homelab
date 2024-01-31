@@ -130,8 +130,8 @@ nextcloud:
         $CONFIG = array (
           'overwritewebroot' => '/',
           'overwritehost' => 'friday.kingfisher-halfmoon.ts.net',
-          'overwrite.cli.url' => 'https://friday.kingfisher-halfmoon.ts.net',
-          'overwriteprotocol' => 'https',
+          'overwrite.cli.url' => 'http://friday.kingfisher-halfmoon.ts.net',
+          'overwriteprotocol' => 'http',
         );
       trustedproxy.config.php: |-
         <?php

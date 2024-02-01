@@ -48,14 +48,14 @@ home-assistant:
         - maria-hill
   
   # -- Enable devices to be discoverable
-  # hostNetwork: true
+  hostNetwork: true
   
   # -- When hostNetwork is true set dnsPolicy to ClusterFirstWithHostNet
-  # dnsPolicy: ClusterFirstWithHostNet
+  dnsPolicy: ClusterFirstWithHostNet
   
   securityContext:
     # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
-    privileged:  # true
+    privileged: true
   
   # -- Configure persistence settings for the chart under this key.
   # @default -- See values.yaml

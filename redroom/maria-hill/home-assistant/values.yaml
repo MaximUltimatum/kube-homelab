@@ -37,8 +37,7 @@ home-assistant:
       hosts:
       - host: maria-hill
         paths:
-        - path: /
-          pathType: Prefix
+          - path: /
       defaultBackend:
         service:
           name: home-assistant

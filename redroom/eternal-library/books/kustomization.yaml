@@ -4,5 +4,6 @@ kind: Kustomization
 
 resources:
 - base/deployment.yaml
+- base/loadbalancer.yaml
 
 namespace: eternal-library

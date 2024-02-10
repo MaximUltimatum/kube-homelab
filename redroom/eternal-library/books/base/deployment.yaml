@@ -29,6 +29,6 @@ spec:
           image: ghcr.io/advplyr/audiobookshelf:latest
           imagePullPolicy: IfNotPresent
           ports:
-          - containerPort: 80
+            - containerPort: 80
       restartPolicy: Always
       

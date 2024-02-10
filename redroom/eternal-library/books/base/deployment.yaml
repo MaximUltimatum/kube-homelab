@@ -28,5 +28,7 @@ spec:
         - name: eternal-library
           image: ghcr.io/advplyr/audiobookshelf:latest
           imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 13378
       restartPolicy: Always
       

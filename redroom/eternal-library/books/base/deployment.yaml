@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: books
+  labels:
+    app: eternal-library
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eternal-library
+  template:
+    metadata:
+      name: eternal-library
+      labels:
+        app: eternal-library
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - dreykov
+      containers:
+        - name: eternal-library
+          image: ghcr.io/advplyr/audiobookshelf:latest
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      

@@ -22,7 +22,7 @@ nextcloud:
   ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
   ##
   ingress:
-    enabled: false
+    enabled: true
     className: tailscale
     annotations:
       nginx.ingress.kubernetes.io/proxy-body-size: 4G
@@ -133,10 +133,14 @@ nextcloud:
           'overwrite.cli.url' => 'http://friday.kingfisher-halfmoon.ts.net',
           'overwriteprotocol' => 'http',
         );
-      trustedproxy.config.php: |-
+      proxy.config.php: |-
         <?php
         $CONFIG = array (
-          'trusted_proxies' => '10.233.0.0/16',
+          'trusted_proxies' => array(
+            0 => '10.233.0.0/16',
+            1 => '100.73.112.102'
+          ),
+          'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
         );
       defaultphone.config.php: |-
         <?php

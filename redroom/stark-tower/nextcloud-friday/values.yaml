@@ -158,14 +158,14 @@ nextcloud:
           'client_body_buffer_size' => '400M',
         );
   
-      logging.config.php: |-
-        <?php
-        $CONFIG = array (
-          'log_type' => 'file',
-          'logfile' => 'nextcloud.log',
-          'loglevel' => 0,
-          'logdateformat' => 'F d, Y H:i:s'
-        );
+      # logging.config.php: |-
+      #   <?php
+      #   $CONFIG = array (
+      #     'log_type' => 'file',
+      #     'logfile' => 'nextcloud.log',
+      #     'loglevel' => 0,
+      #     'logdateformat' => 'F d, Y H:i:s'
+      #   );
   
     # For example, to use S3 as primary storage
     # ref: https://docs.nextcloud.com/server/13/admin_manual/configuration_files/primary_storage.html#simple-storage-service-s3

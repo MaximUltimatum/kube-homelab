@@ -22,7 +22,7 @@ nextcloud:
   ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
   ##
   ingress:
-    enabled: true
+    enabled: false
     className: tailscale
     annotations:
       nginx.ingress.kubernetes.io/proxy-body-size: 4G
@@ -53,6 +53,7 @@ nextcloud:
         #   deny all;
         # }
     path: "/"
+    pathType: Prefix
     tls:
       - hosts:
           - friday

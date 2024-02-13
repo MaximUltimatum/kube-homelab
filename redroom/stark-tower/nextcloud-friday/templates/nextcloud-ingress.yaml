@@ -48,5 +48,5 @@ spec:
                 port:
                   number: 8080
   tls:
-    hosts:
+    - hosts:
       - friday

@@ -15,14 +15,14 @@ metadata:
       # rewrite ^/.well-known/nodeinfo /index.php/.well-known/nodeinfo last;
       # rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
       # rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
-      location = /.well-known/carddav {
-        return 301 $scheme://$host/remote.php/dav;
-      }
-      location = /.well-known/caldav {
-        return 301 $scheme://$host/remote.php/dav;
-      }
-      client_max_body_size 10G;
-      client_body_buffer_size 400M;
+      #       location = /.well-known/carddav {
+      #         return 301 $scheme://$host/remote.php/dav;
+      #       }
+      #       location = /.well-known/caldav {
+      #         return 301 $scheme://$host/remote.php/dav;
+      #       }
+      #       client_max_body_size 10G;
+      #       client_body_buffer_size 400M;
       # location = /robots.txt {
       #   allow all;
       #   log_not_found off;

@@ -5,6 +5,6 @@ version: 0.0.1
 sources:
   - https://github.com/minio/operator/tree/v5.0.10/helm/operator
 dependencies:
-  - name: minio-operator
-    version: 4.3.7
+  - name: operator
+    version: 5.0.12
     repository: https://operator.min.io

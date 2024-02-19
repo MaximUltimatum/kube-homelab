@@ -1,4 +1,4 @@
-minio-operator:
+operator:
   operator:
     ## Setup environment variables for the Operator
   #  env:

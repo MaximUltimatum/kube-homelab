@@ -1,0 +1,10 @@
+apiVersion: v2
+name: minio
+type: application
+version: 0.0.1
+sources:
+  - https://github.com/minio/operator/tree/v5.0.10/helm/operator
+dependencies:
+  - name: minio
+    version: 5.0.10
+    repository: "https://operator.min.io/"

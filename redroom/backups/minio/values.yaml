@@ -46,14 +46,13 @@ operator:
       runAsNonRoot: true
     volumes:
       - name: dreykov-minio
-        mountPath: /dreykov
-        
-    volumeMounts:
-      - name: dreykov-minio
         nfs:
           path: /whatever/minio
           server: 192.168.4.77
           readOnly: false
+    volumeMounts:
+      - name: dreykov-minio
+        mountPath: /dreykov
 
     nodeSelector: { }
     priorityClassName: ""

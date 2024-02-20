@@ -4,6 +4,7 @@ metadata:
   name: dreykov-pv
 spec:
   storageClassName: "nfs"
+  capacity: 8Ti
   nfs:
     server: 192.168.4.77
     path: /whatever/minio

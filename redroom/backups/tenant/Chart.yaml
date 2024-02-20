@@ -1,0 +1,10 @@
+apiVersion: v2
+name: tenant
+type: application
+version: 0.0.1
+sources:
+  - https://github.com/minio/operator/tree/v5.0.10/helm/tenant
+dependencies:
+  - name: tenant
+    version: 5.0.12
+    repository: https://operator.min.io

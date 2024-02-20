@@ -199,7 +199,7 @@ tenant:
     # Configures a Prometheus-compatible scraping endpoint at the specified port.
     metrics:
       enabled: true
-      port: 9000
+      port: 9001
       protocol: http
     ###
     # Configures external certificate settings for the Tenant.

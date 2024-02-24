@@ -16,8 +16,8 @@ minecraft:
   ##
   resources:
     requests:
-      memory: 512Mi
-      cpu: 500m
+      memory: 4Gi
+      cpu: 1000m
   
   lifecycle:
     postStart: []
@@ -233,7 +233,7 @@ minecraft:
     # Require public key to be signed by Mojang to join
     enforceSecureProfile: default
     # If you adjust this, you may need to adjust resources.requests above to match.
-    memory: 1024M
+    memory: 4024M
     # General JVM options to be passed to the Minecraft server invocation
     jvmOpts: ""
     # Options like -X that need to proceed general JVM options

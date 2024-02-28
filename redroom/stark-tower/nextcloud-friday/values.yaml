@@ -156,6 +156,7 @@ nextcloud:
           'post_max_size' => '10G',
           'client_max_body_size' => '10G',
           'client_body_buffer_size' => '400M',
+          'cache_path' => '/tmp/nextcloud-cache/',
         );
   
       # logging.config.php: |-

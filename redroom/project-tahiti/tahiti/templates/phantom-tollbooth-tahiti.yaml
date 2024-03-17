@@ -64,7 +64,7 @@ metadata:
   name: phantom-conductor
 spec:
   type: LoadBalancer
-  allocateLoadBalancerNodePorts: false
+  loadBalancerClass: tailscale
   selector:
     app: phantom-tollbooth
   ports:

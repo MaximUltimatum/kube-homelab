@@ -2,7 +2,7 @@ apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
   name: redroomnet
-  namespace: metallb-system
+  namespace: kube-system
 spec:
   addresses:
     - 192.168.42.0/24
@@ -11,7 +11,7 @@ apiVersion: metallb.io/v1beta2
 kind: BGPPeer
 metadata:
   name: udm
-  namespace: metallb-system
+  namespace: kube-system
 spec:
   myASN: 65569
   peerASN: 65542
@@ -21,4 +21,4 @@ apiVersion: metallb.io/v1beta1
 kind: BGPAdvertisement
 metadata:
   name: advert
-  namespace: metallb-system
+  namespace: kube-system

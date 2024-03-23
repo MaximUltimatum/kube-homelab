@@ -1,0 +1,24 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: redroomnet
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.42.0/24
+---
+apiVersion: metallb.io/v1beta2
+kind: BGPPeer
+metadata:
+  name: udm
+  namespace: metallb-system
+spec:
+  myASN: 65569
+  peerASN: 65542
+  peerAddress: 192.168.4.1
+---
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: advert
+  namespace: metallb-system

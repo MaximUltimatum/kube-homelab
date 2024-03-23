@@ -479,34 +479,15 @@ metallb:
     ## ref: https://metallb.universe.tf/configuration/calico/#the-easy-way
     ## Some CNI implementations (e.g. Calico) does not require speakers
     ##
-    enabled: false
+    enabled: true
+    frr:
+      enabled: true
     ## @param speaker.image.registry [default: REGISTRY_NAME] MetalLB Speaker image registry
     ## @param speaker.image.repository [default: REPOSITORY_NAME/metallb-speaker] MetalLB Speaker image repository
     ## @skip speaker.image.tag MetalLB Speaker  image tag (immutable tags are recommended)
     ## @param speaker.image.digest MetalLB Speaker image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
     ## @param speaker.image.pullPolicy MetalLB Speaker image pull policy
     ## @param speaker.image.pullSecrets Specify docker-registry secret names as an array
-    ##
-    image:
-      registry: docker.io
-      repository: bitnami/metallb-speaker
-      tag: 0.13.12-debian-11-r1
-      digest: ""
-      ## Specify a imagePullPolicy
-      ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
-      ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
-      ##
-      pullPolicy: IfNotPresent
-      ## Optionally specify an array of imagePullSecrets.
-      ## Secrets must be manually created in the namespace.
-      ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
-      ## e.g:
-      ## pullSecrets:
-      ##   - myRegistryKeySecretName
-      ##
-      pullSecrets: []
-    ## @param speaker.updateStrategy.type Speaker daemonset strategy type
-    ## ref: https://kubernetes.io/docs/tasks/manage-daemon/update-daemon-set/
     ##
     updateStrategy:
       ## StrategyType
@@ -532,7 +513,7 @@ metallb:
     psp:
       ## @param speaker.psp.create Whether to create a PodSecurityPolicy. WARNING: PodSecurityPolicy is deprecated in Kubernetes v1.21 or later, unavailable in v1.25 or later
       ##
-      create: true
+      create: false
     ## @param speaker.priorityClassName Speaker pods' priorityClassName
     ##
     priorityClassName: ""

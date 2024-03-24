@@ -23,6 +23,7 @@ qbittorrent:
           port: 8080
     bittorrent:
       enabled: true
+      type: LoadBalancer
       ports:
         bittorrent:
           enabled: true

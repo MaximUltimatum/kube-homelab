@@ -7,7 +7,7 @@ spec:
   capacity:
     storage: 1Ti
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: 192.168.4.77
@@ -22,3 +22,4 @@ metadata:
 spec:
   storageClassName: "nfs"
   volumeName: cannonball-dreykov-pv
+  accessMode: ReadWriteMany

@@ -37,16 +37,16 @@ spec:
           volumeMounts:
             - name: books-storage
               mountPath: /audiobooks
-              subPath: /audiobooks
+              subPath: audiobooks
             - name: books-storage
               mountPath: /podcasts
-              subPath: /podcasts
+              subPath: podcasts
             - name: books-storage
               mountPath: /config
-              subPath: /config
+              subPath: config
             - name: books-storage
               mountPath: /metadata
-              subPath: /metadata
+              subPath: metadata
       restartPolicy: Always
 ---
 apiVersion: v1

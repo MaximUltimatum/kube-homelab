@@ -25,4 +25,5 @@ spec:
   accessModes: 
     - ReadWriteMany
   resources:
-    storage: 1Ti
+    requests:
+      storage: 1Ti

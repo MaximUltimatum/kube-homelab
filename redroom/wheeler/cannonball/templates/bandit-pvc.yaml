@@ -24,3 +24,5 @@ spec:
   volumeName: cannonball-dreykov-pv
   accessModes: 
     - ReadWriteMany
+  resources:
+    storage: 1Ti

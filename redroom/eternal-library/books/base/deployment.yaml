@@ -15,6 +15,10 @@ spec:
       labels:
         app: eternal-library
     spec:
+      volumes:
+        - name: books-storage
+          persistentVolumeClaim:
+            claimName: books-pvc
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -30,5 +34,47 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: books-storage
+              mountPath: /audiobooks
+              subPath: /audiobooks
+            - name: books-storage
+              mountPath: /podcasts
+              subPath: /podcasts
+            - name: books-storage
+              mountPath: /config
+              subPath: /config
+            - name: books-storage
+              mountPath: /metadata
+              subPath: /metadata
       restartPolicy: Always
-      
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: books-pv
+spec:
+  storageClassName: "nfs"
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 192.168.4.77
+    path: /whatever/books
+    readOnly: false
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: books-pvc
+  namespace: eternal-library
+spec:
+  storageClassName: "nfs"
+  volumeName: books-pv
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Ti

@@ -1,0 +1,10 @@
+apiVersion: v2
+name: cannonball
+type: application
+version: 0.0.1
+sources:
+  - https://github.com/gabe565/charts/tree/main/charts/qbittorrent
+dependencies:
+  - name: qbittorrent
+    version: 0.3.3
+    repository: "https://charts.gabe565.com"

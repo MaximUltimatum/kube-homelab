@@ -1,0 +1,76 @@
+qbittorrent:
+  image:
+    # -- image repository
+    repository: ghcr.io/linuxserver/qbittorrent
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+    # -- image tag
+    tag: version-4.6.3-r0
+  
+  # -- environment variables. [[ref]](https://github.com/linuxserver/docker-qbittorrent#parameters)
+  # @default -- See [values.yaml](./values.yaml)
+  env:
+    # -- Set the container timezone
+    TZ: UTC
+  
+  # -- Configures service settings for the chart.
+  # @default -- See [values.yaml](./values.yaml)
+  service:
+    main:
+      ports:
+        http:
+          port: 8080
+    bittorrent:
+      enabled: false
+      ports:
+        bittorrent:
+          enabled: true
+          port: 42429
+          protocol: TCP
+  
+  ingress:
+    # -- Enable and configure ingress settings for the chart under this key.
+    # @default -- See [values.yaml](./values.yaml)
+    main:
+      enabled: true
+      hosts:
+      - host: bandit
+        paths:
+          - path: /
+      defaultBackend:
+        service:
+          name: qbittorrent
+          port:
+            number: 8080
+      ingressClassName: tailscale
+      tls:
+      - hosts:
+        - bandit
+  
+  # -- Configure persistence settings for the chart under this key.
+  # Set `enabled` to `true' to create persistant volumes for each of these.
+  # @default -- See values.yaml
+  persistence:
+    # Configuration files
+    config:
+      enabled: true
+      retain: true
+      storageClass: "longhorn"
+      accessMode: ReadWriteOnce
+      size: 1Gi
+  
+    # Optional - Download location - Allows dedicated volume for storage of downloaded files.
+    downloads:
+      enabled: false
+      # mountPath: /downloads
+      # storageClass: ""
+      # accessMode: ReadWriteOnce
+      # size: 10Gi
+  
+    # Optional - Allows linking to an existing media library scraping location.
+    media:
+      enabled: false
+      # mountPath: /media
+      # storageClass: ""
+      # accessMode: ReadWriteOnce
+      # size: 10Gi

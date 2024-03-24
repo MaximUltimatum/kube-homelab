@@ -22,4 +22,5 @@ metadata:
 spec:
   storageClassName: "nfs"
   volumeName: cannonball-dreykov-pv
-  accessMode: ReadWriteMany
+  accessModes: 
+    - ReadWriteMany

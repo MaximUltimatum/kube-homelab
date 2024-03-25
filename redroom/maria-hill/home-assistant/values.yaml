@@ -84,10 +84,10 @@ home-assistant:
     image:
       repository: bitnami/postgresql
       tag: 15.5.0
-      auth:
-        username: home-assistant
-        password: "oracle-deserves-destruction"
-        database: home-assistant
+    auth:
+      username: home-assistant
+      password: "oracle-deserves-destruction"
+      database: home-assistant
     persistence:
       primary:
         enabled: true

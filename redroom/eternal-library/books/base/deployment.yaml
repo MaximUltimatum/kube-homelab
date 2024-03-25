@@ -30,7 +30,7 @@ spec:
                       - dreykov
       containers:
         - name: eternal-library
-          image: ghcr.io/advplyr/audiobookshelf:latest
+          image: ghcr.io/advplyr/audiobookshelf:2.8.1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

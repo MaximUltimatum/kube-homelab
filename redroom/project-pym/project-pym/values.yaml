@@ -6,7 +6,7 @@ vikunja:
   ## Any values that you find in the above `values.yaml` can be provided to this chart and are then rendered.
   
   image:
-    tag: 0.21.0
+    tag: 0.23.0
   
   ######################
   # VIKUNJA COMPONENTS #
@@ -16,7 +16,7 @@ vikunja:
     enabled: true
     image:
       repository: vikunja/api
-      tag: 0.23.0
+      tag: 0.21.0
       pullPolicy: IfNotPresent
     persistence:
       # This is your Vikunja data will live, you can either let

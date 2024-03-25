@@ -3,8 +3,8 @@ name: home-assistant
 type: application
 version: 0.0.1
 sources:
-  - https://artifacthub.io/packages/helm/k8s-at-home/home-assistant
+  - https://github.com/gabe565/charts/tree/main/charts/home-assistant
 dependencies:
   - name: home-assistant
-    version: 13.4.2
-    repository: "https://k8s-at-home.com/charts/"
+    version: 0.15.0
+    repository: https://charts.gabe565.com

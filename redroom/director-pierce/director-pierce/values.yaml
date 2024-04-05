@@ -88,7 +88,19 @@ frigate:
       front_door:
         ffmpeg:
           inputs:
-            - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.6.82:554/cam/realmonitor?channel=1&subtype=0
+            - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.82:554/cam/realmonitor?channel=1&subtype=0
+              roles:
+                - detect
+                - rtmp
+        detect:
+          enabled: true
+          width: 1280
+          height: 720
+        # fps: 5
+      back_door:
+        ffmpeg:
+          inputs:
+            - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.218:554/cam/realmonitor?channel=1&subtype=0
               roles:
                 - detect
                 - rtmp
@@ -144,15 +156,15 @@ frigate:
     ipFamilies: []
   
   ingress:
-    enabled: false
+    enabled: true
     # -- Enable and configure ingress settings for the chart under this key.
     # @default -- See values.yaml
-    ingressClassName: tailscale # TODO need to make an upstream PR to allow this
+    ingressClassName: tailscale
     annotations:
       kubernetes.io/ingress.class: tailscale
       nginx.ingress.kubernetes.io/proxy-body-size: 64m
     hosts:
-      - host: project-pierce
+      - host: pierce
         paths:
           - '/'
         port: 5000
@@ -164,7 +176,7 @@ frigate:
           number: 5000
     tls:
       - hosts:
-        - project-pierce
+        - pierce
   
   persistence:
     data:

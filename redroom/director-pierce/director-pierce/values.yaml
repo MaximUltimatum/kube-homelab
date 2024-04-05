@@ -58,7 +58,7 @@ frigate:
   config: |
     mqtt:
       # Required: host name
-      host: "mqtt://mosquitto"
+      host: "mqtt://10.233.40.155"
       # Optional: port (default: shown below)
       port: 1883
       # Optional: topic prefix (default: shown below)
@@ -96,6 +96,8 @@ frigate:
           enabled: true
           width: 1280
           height: 720
+        snapshots:
+          enabled: true
         # fps: 5
       back_door:
         ffmpeg:
@@ -108,6 +110,8 @@ frigate:
           enabled: true
           width: 1280
           height: 720
+        snapshots:
+          enabled: true
         # fps: 5
   
   # Probes configuration

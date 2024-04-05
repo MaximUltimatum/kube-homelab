@@ -59,3 +59,4 @@ metadata:
 data:
   mqtt.configuration: |
     allow_anonymous true
+    log_type all

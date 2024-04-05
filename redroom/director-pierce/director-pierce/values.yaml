@@ -82,6 +82,11 @@ frigate:
         device: usb
       # cpu1:
       #   type: cpu
+    go2rtc:
+      streams:
+        front_door:
+          - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.82:554/cam/realmonitor?channel=1&subtype=0
+    
   
     cameras:
       # Name of your camera

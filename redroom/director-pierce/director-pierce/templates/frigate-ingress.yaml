@@ -11,4 +11,5 @@ spec:
     protocol: TCP
     targetPort: http
   selector:
-    name: director-pierce-frigate
+    app.kubernetes.io/name: frigate
+    app.kubernetes.io/instance: director-pierce

@@ -58,7 +58,7 @@ frigate:
   config: |
     mqtt:
       # Required: host name
-      host: "mqtt://10.233.40.155"
+      host: "mqtt://mosquitto-service"
       # Optional: port (default: shown below)
       port: 1883
       # Optional: topic prefix (default: shown below)

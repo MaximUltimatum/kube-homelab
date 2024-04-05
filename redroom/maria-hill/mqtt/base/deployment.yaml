@@ -19,6 +19,12 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: mqtt-data-pvc
+        - name: config
+          configMap:
+            name: mosquitto-config
+            items:
+              - key: "mqtt.configuration"
+                path: "mosquitto.conf"
       containers:
         - name: mosquitto-mqtt
           image: docker.io/eclipse-mosquitto:latest
@@ -29,6 +35,9 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /mosquitto/data
+            - name: config
+              mountPath: /mosquitto/config
+              
       restartPolicy: Always
 ---
 apiVersion: v1
@@ -42,3 +51,11 @@ spec:
   resources:
     requests:
       storage: 1Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mosquitto-config
+data:
+  mqtt.configuration: |
+    allow_anonymous true

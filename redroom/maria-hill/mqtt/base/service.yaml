@@ -9,8 +9,6 @@ spec:
   - name: standard-mqtt-port
     protocol: TCP
     port: 1883
-    targetPort: 1883
   - name: extra-fun
     protocol: TCP
     port: 9001
-    targetPort: 9001

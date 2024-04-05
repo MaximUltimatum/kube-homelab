@@ -24,7 +24,7 @@ spec:
             claimName: mqtt-data-pvc
       containers:
         - name: mosquitto-mqtt
-          image: ghcr.io/eclipse-mosquitto:latest
+          image: docker.io/eclipse-mosquitto:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 1883

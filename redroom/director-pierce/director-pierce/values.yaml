@@ -156,7 +156,7 @@ frigate:
     ipFamilies: []
   
   ingress:
-    enabled: true
+    enabled: false
     # -- Enable and configure ingress settings for the chart under this key.
     # @default -- See values.yaml
     ingressClassName: tailscale

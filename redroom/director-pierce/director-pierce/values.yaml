@@ -30,7 +30,7 @@ frigate:
     # -- enables the use of a Coral device
     enabled: true
     # -- path on the host to which to mount the Coral device
-    hostPath: /dev/bus/usb/002/001
+    hostPath: /dev/bus/usb/002/003
   
   gpu:
     nvidia:
@@ -100,7 +100,7 @@ frigate:
       back_door:
         ffmpeg:
           inputs:
-            - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.218:554/cam/realmonitor?channel=1&subtype=0
+            - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.85:554/cam/realmonitor?channel=1&subtype=0
               roles:
                 - detect
                 - rtmp

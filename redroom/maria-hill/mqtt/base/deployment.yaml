@@ -16,9 +16,6 @@ spec:
         app: mosquitto
     spec:
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: mqtt-config-pvc
         - name: data
           persistentVolumeClaim:
             claimName: mqtt-data-pvc
@@ -30,23 +27,9 @@ spec:
             - containerPort: 1883
             - containerPort: 9001
           volumeMounts:
-            - name: config
-              mountPath: /mosquitto/config
             - name: data
               mountPath: /mosquitto/data
       restartPolicy: Always
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mqtt-config-pvc
-spec:
-  storageClassName: "longhorn"
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

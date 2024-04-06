@@ -10,5 +10,7 @@ spec:
   ports:
     - port: 5000
       name: rstp
-    - port: 9001
-      name: http
+    - port: 1935
+      name: rtmp
+    - port: 8554
+      name: noidea

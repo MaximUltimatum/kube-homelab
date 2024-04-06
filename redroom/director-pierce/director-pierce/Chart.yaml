@@ -1,11 +1,11 @@
 apiVersion: v2
 name: director-pierce
 type: application
-version: 0.0.1
+version: 0.0.2
 sources:
   - https://docs.frigate.video/frigate/installation/
   - https://github.com/blakeblackshear/blakeshome-charts/tree/master/charts/frigate
 dependencies:
   - name: frigate
-    version: 7.2.0
+    version: 7.4.0
     repository: "https://blakeblackshear.github.io/blakeshome-charts/"

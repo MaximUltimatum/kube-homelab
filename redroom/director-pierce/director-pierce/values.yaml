@@ -85,7 +85,7 @@ frigate:
     go2rtc:
       streams:
         front_door:
-          - rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.82:554/cam/realmonitor?channel=1&subtype=0
+          - rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.84:554/cam/realmonitor?channel=1&subtype=0
         back_door:
           - rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.85:554/cam/realmonitor?channel=1&subtype=0
     
@@ -95,7 +95,7 @@ frigate:
       front_door:
         ffmpeg:
           inputs:
-            - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.82:554/cam/realmonitor?channel=1&subtype=0
+            - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.84:554/cam/realmonitor?channel=1&subtype=0
               roles:
                 - detect
                 - rtmp

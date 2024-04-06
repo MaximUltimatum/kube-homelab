@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: phantom-conductor
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: frigate
+    app.kubernetes.io/instance: director-pierce
+  ports:
+    - containerPort: 5000
+      name: rstp
+    - containerPort: 9001
+      name: http

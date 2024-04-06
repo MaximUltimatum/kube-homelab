@@ -105,6 +105,17 @@ frigate:
           height: 720
         snapshots:
           enabled: true
+        objects:
+          track:
+            - person
+            - dog
+            - cat
+            - car
+            - bicycle
+            - motorcycle
+            - bird
+            - cell phone
+            - baseball bat
         # fps: 5
       back_door:
         ffmpeg:
@@ -127,7 +138,6 @@ frigate:
             - car
             - bicycle
             - motorcycle
-            - bird
             - bird
             - cell phone
             - baseball bat

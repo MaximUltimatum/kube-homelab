@@ -116,8 +116,8 @@ paperless-ngx:
     enabled: true
     auth:
       enabled: true
-      existingSecret: tahiti-redis-secret
-      existingSecretPasswordKey: tahiti-redis-password
+      existingSecret: tahiti-redis
+      existingSecretPasswordKey: redis-password
     master:
       persistence:
         enabled: false

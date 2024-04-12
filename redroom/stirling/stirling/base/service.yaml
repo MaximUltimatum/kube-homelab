@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: stirling
+  tailscale.com/hostname: stirling
 spec:
   type: LoadBalancer
   loadBalancerClass: tailscale

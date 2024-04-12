@@ -6,4 +6,4 @@ resources:
 - base/deployment.yaml
 - base/service.yaml
 
-namespace: project-pym
+namespace: stirling

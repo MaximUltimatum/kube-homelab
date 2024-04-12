@@ -9,5 +9,5 @@ spec:
     app: stirling-pdf
   ports:
   - name: stirling-service
-    protocol: TCP
+    protocol: http
     port: 8080

@@ -51,7 +51,7 @@ spec:
             - name: zigbee2mqtt-udev
               mountPath: /run/udev
             - name: ttyacm
-              mountPath: /dev/ttyUSB0
+              mountPath: /dev/ttyACM0
           livenessProbe:
             tcpSocket:
               port: 8080

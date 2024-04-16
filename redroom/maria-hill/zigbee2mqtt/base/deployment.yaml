@@ -41,7 +41,6 @@ spec:
               subPath: configuration.yaml
             - name: zigbee2mqtt-config-secret
               mountPath: /data/secret.yaml
-              subPath: secret.yaml
             - name: zigbee2mqtt-udev
               mountPath: /run/udev
             - name: ttyacm

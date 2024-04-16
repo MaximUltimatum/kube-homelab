@@ -18,24 +18,24 @@ spec:
     spec:
       containers:
         - name: zigbee2mqtt
+          image: koenkk/zigbee2mqtt:latest
+          imagePullPolicy: IfNotPresent
           affinity:
             nodeAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
                 nodeSelectorTerms:
                   - matchExpressions:
-                      - key: app
+                      - key: kubernetes.io/hostname
                         operator: In
                         values:
-                          - sonoff-zigbee
-          image: koenkk/zigbee2mqtt:latest
-          imagePullPolicy: IfNotPresent
+                          - brownwidow
           env:
             - name: TZ
               value: America/Chicago
             - name: "ZIGBEE2MQTT_DATA"
               value: "/data"
             - name: ZIGBEE2MQTT_CONFIG_MQTT_SERVER # optional - can also be configured in the configuration.yaml in the configmap
-              value: "mqtt://mosquitto"
+              value: "mqtt://mosquitto-service"
           securityContext:
             privileged: true
           ports:

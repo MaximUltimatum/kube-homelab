@@ -20,15 +20,6 @@ spec:
         - name: zigbee2mqtt
           image: koenkk/zigbee2mqtt:latest
           imagePullPolicy: IfNotPresent
-          affinity:
-            nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                  - matchExpressions:
-                      - key: "kubernetes.io/hostname"
-                        operator: In
-                        values:
-                          - brownwidow
           env:
             - name: TZ
               value: America/Chicago
@@ -73,6 +64,8 @@ spec:
             failureThreshold: 30
             timeoutSeconds: 1
             periodSeconds: 5
+        nodeSelector:
+          app: sonoff-zigbee
       volumes:
         - name: zigbee2mqtt-data
           persistentVolumeClaim:

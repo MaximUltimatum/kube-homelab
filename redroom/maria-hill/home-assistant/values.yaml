@@ -62,19 +62,19 @@ home-assistant:
     # -- Configure a hostPathMount to mount a USB device in the container.
     # @default -- See values.yaml
   usb:
-    enabled: true
-    type: hostPath
-    hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE3018882-if00
+    enabled: false
+    # type: hostPath
+    # hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE3018882-if00
   
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: app
-            operator: In
-            values:
-            - zigbee-controller
+  # affinity:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #       - matchExpressions:
+  #         - key: app
+  #           operator: In
+  #           values:
+  #           - zigbee-controller
   
   # -- Enable and configure postgresql database subchart under this key.
   #    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)

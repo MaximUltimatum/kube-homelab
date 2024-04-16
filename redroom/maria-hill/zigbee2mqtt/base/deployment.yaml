@@ -27,8 +27,6 @@ spec:
               value: America/Chicago
             - name: "ZIGBEE2MQTT_DATA"
               value: "/data"
-            - name: ZIGBEE2MQTT_CONFIG_MQTT_SERVER # optional - can also be configured in the configuration.yaml in the configmap
-              value: "mqtt://mosquitto-service"
           securityContext:
             privileged: true
           ports:
@@ -39,7 +37,7 @@ spec:
             - name: zigbee2mqtt-data
               mountPath: /data
             - name: zigbee2mqtt-config
-              mountPath: /app/configuration.yaml
+              mountPath: /data/configuration.yaml
               subPath: configuration.yaml
             - name: zigbee2mqtt-udev
               mountPath: /run/udev

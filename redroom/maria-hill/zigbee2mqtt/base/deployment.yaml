@@ -17,6 +17,8 @@ spec:
         app: zigbee2mqtt
     spec:
       containers:
+        nodeSelector:
+          app: sonoff-zigbee
         - name: zigbee2mqtt
           image: koenkk/zigbee2mqtt:latest
           imagePullPolicy: IfNotPresent
@@ -64,8 +66,6 @@ spec:
             failureThreshold: 30
             timeoutSeconds: 1
             periodSeconds: 5
-          nodeSelector:
-            app: sonoff-zigbee
       volumes:
         - name: zigbee2mqtt-data
           persistentVolumeClaim:

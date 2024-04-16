@@ -64,8 +64,8 @@ spec:
             failureThreshold: 30
             timeoutSeconds: 1
             periodSeconds: 5
-        nodeSelector:
-          app: sonoff-zigbee
+          nodeSelector:
+            app: sonoff-zigbee
       volumes:
         - name: zigbee2mqtt-data
           persistentVolumeClaim:

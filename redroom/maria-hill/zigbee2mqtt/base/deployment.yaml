@@ -35,13 +35,10 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: zigbee2mqtt-data
-              mountPath: /data
-            - name: zigbee2mqtt-config
+              mountPath: /apps
+            - name: secret-config-mount
               mountPath: /data/configuration.yaml
               subPath: configuration.yaml
-            - name: secret-mount
-              mountPath: /data/secret.yaml
-              subPath: secret.yaml
             - name: zigbee2mqtt-udev
               mountPath: /run/udev
             - name: ttyacm
@@ -77,9 +74,6 @@ spec:
         - name: ttyacm
           hostPath:
             path: /dev/ttyUSB0
-        - name: zigbee2mqtt-config
-          configMap:
-            name: zigbee2mqtt-config
-        - name: secret-mount
+        - name: secret-config-mount
           secret:
             secretName: zigbee2mqtt-config-secret

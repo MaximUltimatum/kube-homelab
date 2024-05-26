@@ -1,0 +1,10 @@
+apiVersion: tailscale.com/v1alpha1
+kind: ProxyClass
+metadata:
+  name: irish-eyes
+spec:
+  statefulSet:
+    pod:
+       tailscaleContainer:
+         securityContext:
+           privileged: true

@@ -4,6 +4,7 @@ metadata:
   name: pierce
   annotations:
     tailscale.com/hostname: pierce
+  labels:
     tailscale.com/proxy-class: "irish-eyes"
 spec:
   type: LoadBalancer

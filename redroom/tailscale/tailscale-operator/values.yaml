@@ -17,7 +17,7 @@ tailscale-operator:
   
   operatorConfig:
     image:
-      repo: ghcr.io/tailscale/tailscale-operator
+      repo: ghcr.io/tailscale/k8s-operator
       # Digest will be prioritized over tag. If neither are set appVersion will be
       # used.
       tag: ""

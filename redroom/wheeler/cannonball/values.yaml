@@ -35,6 +35,8 @@ qbittorrent:
     # @default -- See [values.yaml](./values.yaml)
     main:
       enabled: true
+      labels:
+        tailscale.com/proxy-class: "irish-eyes"
       hosts:
       - host: bandit
         paths:

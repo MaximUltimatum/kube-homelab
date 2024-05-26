@@ -338,7 +338,8 @@ prometheus:
   
       ## Prometheus server Ingress additional labels
       ##
-      extraLabels: {}
+      extraLabels:
+        tailscale.com/proxy-class: "irish-eyes"
   
       ## Redirect ingress to an additional defined port on the service
       # servicePort: 8081

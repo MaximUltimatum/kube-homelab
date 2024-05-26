@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: jarviscraft
   namespace: jarvis
+  labels:
+    tailscale.com/proxy-class: "irish-eyes"
 spec:
   type: LoadBalancer
   loadBalancerClass: tailscale

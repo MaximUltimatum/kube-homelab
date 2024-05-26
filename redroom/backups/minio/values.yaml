@@ -109,7 +109,8 @@ operator:
     ingress:
       enabled: true
       ingressClassName: tailscale
-      labels: { }
+      labels:
+        tailscale.com/proxy-class: "irish-eyes"
       annotations: { }
       tls:
         - hosts:

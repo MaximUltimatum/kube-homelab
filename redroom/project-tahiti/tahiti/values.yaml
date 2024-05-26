@@ -38,6 +38,8 @@ paperless-ngx:
       name: nginx
     main:
       enabled: true
+      labels:
+        tailscale.com/proxy-class: "irish-eyes"
       annotations:
         nginx.ingress.kubernetes.io/proxy-body-size: 64m
       hosts:

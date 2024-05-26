@@ -6,6 +6,7 @@ metadata:
     app.kubernetes.io/name: nextcloud
     app.kubernetes.io/instance: nextcloud-friday
     app.kubernetes.io/component: app
+    tailscale.com/proxy-class: "irish-eyes"
 spec:
   ingressClassName: tailscale
   rules:

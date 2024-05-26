@@ -65,6 +65,8 @@ immich:
     ingress:
       main:
         enabled: true
+        labels:
+          tailscale.com/proxy-class: "irish-eyes"
         ingressClassName: tailscale
         annotations:
           # proxy-body-size is set to 0 to remove the body limit on file uploads

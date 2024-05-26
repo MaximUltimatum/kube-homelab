@@ -5,6 +5,8 @@ metadata:
   namespace: eternal-library
   annotations:
     tailscale.com/hostname: banner
+  labels:
+    tailscale.com/proxy-class: "irish-eyes"
 spec:
   type: LoadBalancer
   loadBalancerClass: tailscale

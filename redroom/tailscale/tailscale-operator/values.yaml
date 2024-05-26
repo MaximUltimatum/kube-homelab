@@ -20,7 +20,7 @@ tailscale-operator:
       repo: ghcr.io/tailscale/tailscale-operator
       # Digest will be prioritized over tag. If neither are set appVersion will be
       # used.
-      tag: v1.66.4
+      tag: ""
       digest: ""
       pullPolicy: Always
     logging: "info" # info, debug, dev

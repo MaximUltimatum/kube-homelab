@@ -33,7 +33,7 @@ spec:
               mountPath: /app/data
           env:
             - name: DB_ENGINE
-              value: postgres
+              value: sqlite
             - name: POSTGRES_DB
               value: mealiedb
             - name: POSTGRES_SERVER

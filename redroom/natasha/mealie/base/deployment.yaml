@@ -19,6 +19,9 @@ spec:
         - name: recipe-book
           persistentVolumeClaim:
             claimName: recipe-pvc
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-storage-pvc
       containers:
         - name: mealie
           image: ghcr.io/mealie-recipes/mealie:v1.7.0 
@@ -27,6 +30,7 @@ spec:
             - containerPort: 9925
           volumeMounts:
             - name: recipe-book
+              mountPath: /app/data
           env:
             - name: DB_ENGINE
               value: postgres
@@ -48,6 +52,9 @@ spec:
           image: postgres:15
           ports:
             - containerPort: 5432
+          volumeMounts:
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data
           env:
             - name: POSTGRES_DB
               value: mealiedb
@@ -62,3 +69,27 @@ spec:
                   name: mealie-secret
                   key: POSTGRES_PASSWORD
       restartPolicy: Always
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: recipe-book-pvc
+  namespace: natasha
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-storage-pvc
+  namespace: natasha
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi

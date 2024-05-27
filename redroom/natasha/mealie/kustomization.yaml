@@ -5,6 +5,5 @@ kind: Kustomization
 resources:
 - base/deployment.yaml
 - base/loadbalancer.yaml
-- base/sealed-secret.yaml
 
 namespace: natasha

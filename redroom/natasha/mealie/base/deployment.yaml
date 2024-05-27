@@ -24,13 +24,15 @@ spec:
           image: ghcr.io/mealie-recipes/mealie:v1.7.0 
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 9000
+            - containerPort: 9925
           volumeMounts:
             - name: recipe-book
               mountPath: /app/data
           env:
             - name: DB_ENGINE
               value: sqlite
+            - name: BASE_URL
+              value: yelena.kingfisher-halfmoon.ts.net
       restartPolicy: Always
 ---
 apiVersion: v1

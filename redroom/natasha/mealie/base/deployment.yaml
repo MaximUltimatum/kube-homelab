@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cooking
+  labels:
+    app: mealie
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mealie
+  template:
+    metadata:
+      name: mealie
+      labels:
+        app: mealie
+    spec:
+      volumes:
+        - name: recipe-book
+          persistentVolumeClaim:
+            claimName: recipe-pvc
+      containers:
+        - name: mealie
+          image: ghcr.io/mealie-recipes/mealie:v1.7.0 
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9925
+          volumeMounts:
+            - name: recipe-book
+          env:
+            - name: DB_ENGINE
+              value: postgres
+            - name: POSTGRES_PORT:
+              value: 5432
+            - name: POSTGRES_DB:
+              value: mealiedb
+            - name: POSTGRES_SERVER:
+              value: mealie-postgres
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mealie-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mealie-secret
+                  key: POSTGRES_PASSWORD
+        - name: mealie-postgres
+          image: postgres:15
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: mealiedb
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mealie-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mealie-secret
+                  key: POSTGRES_PASSWORD
+      restartPolicy: Always

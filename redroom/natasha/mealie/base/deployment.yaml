@@ -30,11 +30,11 @@ spec:
           env:
             - name: DB_ENGINE
               value: postgres
-            - name: POSTGRES_PORT:
+            - name: POSTGRES_PORT
               value: 5432
             - name: POSTGRES_DB:
               value: mealiedb
-            - name: POSTGRES_SERVER:
+            - name: POSTGRES_SERVER
               value: mealie-postgres
             - name: POSTGRES_USER
               valueFrom:

@@ -18,7 +18,7 @@ spec:
       volumes:
         - name: recipe-book
           persistentVolumeClaim:
-            claimName: recipe-pvc
+            claimName: recipe-book-pvc
         - name: postgres-storage
           persistentVolumeClaim:
             claimName: postgres-storage-pvc

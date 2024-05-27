@@ -24,7 +24,7 @@ spec:
           image: ghcr.io/mealie-recipes/mealie:v1.7.0 
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 9925
+            - containerPort: 9000
           volumeMounts:
             - name: recipe-book
               mountPath: /app/data

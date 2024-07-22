@@ -28,25 +28,25 @@ spec:
           volumeMounts:
             - name: lubebottle
               mountPath: /config
-              subPath: App/config
+              subPath: config
             - name: lubebottle
               mountPath: /data
-              subPath: App/data
+              subPath: data
             - name: lubebottle
               mountPath: /translations
-              subPath: App/wwwroot/translations
+              subPath: wwwroot/translations
             - name: lubebottle
               mountPath: /documents
-              subPath: App/wwwroot/documents
+              subPath: wwwroot/documents
             - name: lubebottle
               mountPath: /images
-              subPath: App/wwwroot/images
+              subPath: wwwroot/images
             - name: lubebottle
               mountPath: /temp
-              subPath: App/wwwroot/temp
+              subPath: wwwroot/temp
             - name: lubebottle
               mountPath: /log
-              subPath: App/log
+              subPath: log
             - name: lubebottle
               mountPath: /keys
               subPath: root/.aspnet/DataProtection-Keys

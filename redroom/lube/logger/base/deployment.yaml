@@ -27,29 +27,29 @@ spec:
             - containerPort: 8080
           volumeMounts:
             - name: lubebottle
-              mountPath: /config
+              mountPath: /App/config
               subPath: config
             - name: lubebottle
-              mountPath: /data
+              mountPath: /App/data
               subPath: data
             - name: lubebottle
-              mountPath: /translations
-              subPath: wwwroot/translations
+              mountPath: /App/wwwroot/translations
+              subPath: translations
             - name: lubebottle
-              mountPath: /documents
-              subPath: wwwroot/documents
+              mountPath: /App/wwwroot/documents
+              subPath: documents
             - name: lubebottle
-              mountPath: /images
-              subPath: wwwroot/images
+              mountPath: /App/wwwroot/images
+              subPath: images
             - name: lubebottle
-              mountPath: /temp
-              subPath: wwwroot/temp
+              mountPath: /App/wwwroot/temp
+              subPath: temp
             - name: lubebottle
-              mountPath: /log
+              mountPath: /App/log
               subPath: log
             - name: lubebottle
-              mountPath: /keys
-              subPath: root/.aspnet/DataProtection-Keys
+              mountPath: /root/.aspnet/DataProtection-Keys
+              subPath: keys
       restartPolicy: Always
 ---
 apiVersion: v1

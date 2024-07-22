@@ -28,28 +28,28 @@ spec:
           volumeMounts:
             - name: lubebottle
               mountPath: /config
-              subPath: /App/config
+              subPath: App/config
             - name: lubebottle
               mountPath: /data
-              subPath: /App/data
+              subPath: App/data
             - name: lubebottle
               mountPath: /translations
-              subPath: /App/wwwroot/translations
+              subPath: App/wwwroot/translations
             - name: lubebottle
               mountPath: /documents
-              subPath: /App/wwwroot/documents
+              subPath: App/wwwroot/documents
             - name: lubebottle
               mountPath: /images
-              subPath: /App/wwwroot/images
+              subPath: App/wwwroot/images
             - name: lubebottle
               mountPath: /temp
-              subPath: /App/wwwroot/temp
+              subPath: App/wwwroot/temp
             - name: lubebottle
               mountPath: /log
-              subPath: /App/log
+              subPath: App/log
             - name: lubebottle
               mountPath: /keys
-              subPath: /root/.aspnet/DataProtection-Keys
+              subPath: root/.aspnet/DataProtection-Keys
       restartPolicy: Always
 ---
 apiVersion: v1

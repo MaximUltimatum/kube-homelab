@@ -2,7 +2,7 @@ minecraft:
   # ref: https://hub.docker.com/r/itzg/minecraft-server/
   image:
     repository: itzg/minecraft-server
-    tag: java17
+    tag: java21
     pullPolicy: IfNotPresent
     pullSecret: ""
   

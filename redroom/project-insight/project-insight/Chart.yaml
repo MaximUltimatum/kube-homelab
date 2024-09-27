@@ -6,5 +6,5 @@ sources:
   - https://github.com/immich-app/immich-charts
 dependencies:
   - name: immich
-    version: 0.4
+    version: 0.7.2
     repository: "https://immich-app.github.io/immich-charts"

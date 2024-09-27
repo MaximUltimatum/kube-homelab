@@ -279,14 +279,14 @@ frigate:
     #   gpu.intel.com/i915: 1
   
   # -- Set Security Context
-  securityContext: {}
+  securityContext:
     # capabilities:
     #   drop:
     #   - ALL
     # readOnlyRootFilesystem: true
     # runAsNonRoot: true
     # runAsUser: 1000
-    # privileged: true
+    privileged: true
   
   # -- Node Selector configuration
   nodeSelector: {}

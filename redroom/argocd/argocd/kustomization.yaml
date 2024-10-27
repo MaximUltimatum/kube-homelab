@@ -11,3 +11,4 @@ resources:
 namespace: argocd
 patches:
 - path: overlays/argocd-cmd-params-cm.yaml
+- path: overlays/argocd-cm.yaml

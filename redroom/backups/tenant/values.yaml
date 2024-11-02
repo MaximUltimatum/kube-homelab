@@ -83,7 +83,7 @@ tenant:
     # The Kubernetes secret name that contains MinIO environment variable configurations.
     # The secret is expected to have a key named config.env containing environment variables exports.
     configuration:
-      name: myminio-env-configuration
+      name: tenant-login
     ###
     # Top level key for configuring MinIO Pool(s) in this Tenant.
     #

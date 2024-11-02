@@ -14,7 +14,7 @@ spec:
     protocol: TCP
     targetPort: 9000
   - name: eternal-console
-    port: 9443
+    port: 443
     protocol: TCP
     targetPort: 9443
   selector:

@@ -17,9 +17,8 @@ tenant:
   #    secretKey: minio123
   #
   secrets:
-    name: myminio-env-configuration
-    accessKey: minio 
-    secretKey: minio123
+    existingSecret:
+      name: tenant-login
     ###
     # The name of an existing Kubernetes secret to import to the MinIO Tenant
     # The secret must contain a key ``config.env``.

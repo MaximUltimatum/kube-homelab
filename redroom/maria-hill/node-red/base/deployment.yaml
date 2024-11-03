@@ -6,9 +6,6 @@ metadata:
   name: pepper
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: pepper
   strategy:
     type: Recreate
   template:

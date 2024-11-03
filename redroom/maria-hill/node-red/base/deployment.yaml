@@ -19,6 +19,8 @@ spec:
       containers:
         - name: pepper-pots
           image: nodered/node-red:4.0.5-22
+          securityContext:
+            privileged: true
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

@@ -16,8 +16,6 @@ spec:
       labels:
         app: pepper
     spec:
-      nodeSelector:
-        app: pepper
       containers:
         - name: pepper-pots
           image: nodered/node-red:4.0.5

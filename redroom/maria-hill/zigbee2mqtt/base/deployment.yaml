@@ -27,6 +27,16 @@ spec:
               value: America/Chicago
             - name: "ZIGBEE2MQTT_DATA"
               value: "/data"
+            - name: "ZIGBEE2MQTT_CONFIG_MQTT_SERVER"
+              value: "mqtt://mosquitto-service"
+            - name: "ZIGBEE2MQTT_CONFIG_MQTT_BASE_TOPIC"
+              value: "zigbee2mqtt"
+            - name: "ZIGBEE2MQTT_CONFIG_PERMIT_JOIN"
+              value: "true"
+            - name: "ZIGBEE2MQTT_CONFIG_SERIAL_PORT"
+              value: "/dev/ttyACM0"
+            - name: "ZIGBEE2MQTT_CONFIG_ADVANCED_NETWORK_KEY"
+          value: "GENERATE"
           securityContext:
             privileged: true
           ports:
@@ -35,10 +45,7 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: zigbee2mqtt-data
-              mountPath: /apps
-            - name: secret-config-mount
-              mountPath: /data/configuration.yaml
-              subPath: configuration.yaml
+              mountPath: /data
             - name: zigbee2mqtt-udev
               mountPath: /run/udev
             - name: ttyacm
@@ -74,6 +81,3 @@ spec:
         - name: ttyacm
           hostPath:
             path: /dev/ttyUSB0
-        - name: secret-config-mount
-          secret:
-            secretName: zigbee2mqtt-config-secret

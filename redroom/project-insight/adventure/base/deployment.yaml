@@ -33,7 +33,7 @@ spec:
               value: adventure-backend
               
         - name: adventure-db
-            image: postgis/postgis:15-3.3
+          image: postgis/postgis:15-3.3
           imagePullPolicy: IfNotPresent
           ports:
             containerPort: 5432
@@ -52,7 +52,7 @@ spec:
                   key: adventure-postgres-password
 
         - name: adventure-backend
-            image: ghcr.io/seanmorley15/adventurelog-backend:latest
+          image: ghcr.io/seanmorley15/adventurelog-backend:latest
           imagePullPolicy: IfNotPresent
           ports:
           volumeMounts:

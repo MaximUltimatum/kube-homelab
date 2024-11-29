@@ -78,6 +78,8 @@ spec:
               value: adventure-backend
             - name: FRONTEND_URL
               value: https://wanderlust.kingfisher-halfmoon.ts.net
+            - name: CSRF_TRUSTED_ORIGINS
+              value:
       restartPolicy: Always
 ---
 apiVersion: v1
@@ -118,12 +120,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: adventure-backend
+  name: server
 spec:
   selector:
     app: adventure
     name: adventure-backend
   ports:
     - protocol: TCP
-      port: 80
+      port: 8000
       targetPort: 80

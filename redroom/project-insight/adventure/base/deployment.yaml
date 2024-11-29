@@ -68,7 +68,7 @@ spec:
             - name: PGDATABASE
               value: database
             - name: PGUSER
-              value: adventure
+              value: postgres
             - name: PGPASSWORD
               valueFrom: 
                 secretKeyRef:
@@ -79,7 +79,7 @@ spec:
             - name: FRONTEND_URL
               value: https://wanderlust.kingfisher-halfmoon.ts.net
             - name: CSRF_TRUSTED_ORIGINS
-              value:
+              value: https://wanderlust.kingfisher-halfmoon.ts.net, localhost, http://wanderlust
       restartPolicy: Always
 ---
 apiVersion: v1

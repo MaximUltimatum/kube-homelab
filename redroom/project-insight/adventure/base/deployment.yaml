@@ -39,7 +39,7 @@ spec:
             - containerPort: 5432
           volumeMounts:
             - name: adventure-journal-db
-              mountPath: /var/lib/postgresql/data
+              mountPath: /var/lib/postgresql/data/pgdata
           env:
             - name: POSTGRES_DB
               value: database

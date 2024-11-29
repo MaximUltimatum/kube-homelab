@@ -36,7 +36,7 @@ spec:
           image: postgis/postgis:15-3.3
           imagePullPolicy: IfNotPresent
           ports:
-            containerPort: 5432
+            - containerPort: 5432
           volumeMounts:
             - name: adventure-journal-db
               mountPath: /var/lib/postgresql/data
@@ -55,6 +55,8 @@ spec:
           image: ghcr.io/seanmorley15/adventurelog-backend:latest
           imagePullPolicy: IfNotPresent
           ports:
+            - containerPort: 80
+            - containerPort: 443
           volumeMounts:
             - name: adventure-journal
               mountPath: /code/media

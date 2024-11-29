@@ -64,11 +64,11 @@ spec:
               mountPath: /code/media
           env:
             - name: PGHOST
-              value: localhost
+              value: "localhost"
             - name: PGDATABASE
-              value: database
+              value: "database"
             - name: PGUSER
-              value: adventure
+              value: "adventure"
             - name: PGPASSWORD
               valueFrom: 
                 secretKeyRef:
@@ -80,19 +80,19 @@ spec:
                   name: adventurelog-secret
                   key: adventure-postgres-password
             - name: PUBLIC_URL
-              value: adventure-backend # Match the outward port, used for the creation of image urls
+              value: "adventure-backend" # Match the outward port, used for the creation of image urls
             - name: FRONTEND_URL
-              value: https://wanderlust.kingfisher-halfmoon.ts.net
+              value: "https://wanderlust.kingfisher-halfmoon.ts.net"
             - name: CSRF_TRUSTED_ORIGINS
-              value: https://wanderlust.kingfisher-halfmoon.ts.net, http://localhost:3000, http://wanderlust, http:127.0.0.1:3000, http://127.0.0.1:9123
+              value: "https://wanderlust.kingfisher-halfmoon.ts.net, http://localhost:3000, http://wanderlust, http:127.0.0.1:3000, http://127.0.0.1:9123"
             - name: DJANGO_ADMIN_USERNAME
-              value: admin
+              value: "admin"
             - name: DJANGO_ADMIN_PASSWORD
-              value: admin
+              value: "admin"
             - name: DJANGO_ADMIN_EMAIL
-              value: admin@example.com
+              value: "admin@example.com"
             - name: DEBUG
-              value: True
+              value: "True"
       restartPolicy: Always
 ---
 apiVersion: v1

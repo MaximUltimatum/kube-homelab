@@ -46,7 +46,7 @@ spec:
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata/subdir
             - name: POSTGRES_USER
-              value: postgres
+              value: adventure
             - name: POSTGRES_PASSWORD
               valueFrom: 
                 secretKeyRef:
@@ -64,11 +64,11 @@ spec:
               mountPath: /code/media
           env:
             - name: PGHOST
-              value: adventure-db
+              value: localhost
             - name: PGDATABASE
               value: database
             - name: PGUSER
-              value: postgres
+              value: adventure
             - name: PGPASSWORD
               valueFrom: 
                 secretKeyRef:

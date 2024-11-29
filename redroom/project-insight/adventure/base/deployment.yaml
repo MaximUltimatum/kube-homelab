@@ -31,6 +31,8 @@ spec:
           env:
             - name: PUBLIC_SERVER_URL
               value: http://server:8000
+            - name: ORIGIN
+              value: http://wanderlust
               
         - name: adventure-db
           image: postgis/postgis:15-3.3
@@ -59,6 +61,7 @@ spec:
           ports:
             - containerPort: 80
             - containerPort: 443
+            - containerPort: 8000
           volumeMounts:
             - name: adventure-journal
               mountPath: /code/media
@@ -80,9 +83,9 @@ spec:
                   name: adventurelog-secret
                   key: adventure-postgres-password
             - name: PUBLIC_URL
-              value: "adventure-backend" # Match the outward port, used for the creation of image urls
+              value: "http://server:8000" # Match the outward port, used for the creation of image urls
             - name: FRONTEND_URL
-              value: "https://wanderlust.kingfisher-halfmoon.ts.net"
+              value: "http://wanderlust"
             - name: CSRF_TRUSTED_ORIGINS
               value: "https://wanderlust.kingfisher-halfmoon.ts.net, http://localhost:3000, http://wanderlust, http://127.0.0.1:3000, http://127.0.0.1:9123"
             - name: DJANGO_ADMIN_USERNAME

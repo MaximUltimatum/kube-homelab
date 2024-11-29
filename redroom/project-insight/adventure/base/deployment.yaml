@@ -30,7 +30,7 @@ spec:
             - containerPort: 3000
           env:
             - name: PUBLIC_SERVER_URL
-              value: adventure-backend
+              value: http://server:8000
               
         - name: adventure-db
           image: postgis/postgis:15-3.3

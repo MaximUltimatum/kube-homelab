@@ -74,6 +74,11 @@ spec:
                 secretKeyRef:
                   name: adventurelog-secret
                   key: adventure-postgres-password
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: adventurelog-secret
+                  key: adventure-postgres-password
             - name: PUBLIC_URL
               value: adventure-backend # Match the outward port, used for the creation of image urls
             - name: FRONTEND_URL

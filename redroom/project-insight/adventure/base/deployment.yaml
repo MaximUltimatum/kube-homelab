@@ -75,11 +75,17 @@ spec:
                   name: adventurelog-secret
                   key: adventure-postgres-password
             - name: PUBLIC_URL
-              value: adventure-backend
+              value: adventure-backend # Match the outward port, used for the creation of image urls
             - name: FRONTEND_URL
               value: https://wanderlust.kingfisher-halfmoon.ts.net
             - name: CSRF_TRUSTED_ORIGINS
               value: https://wanderlust.kingfisher-halfmoon.ts.net, localhost, http://wanderlust
+            - name: DJANGO_ADMIN_USERNAME
+              value: admin
+            - name: DJANGO_ADMIN_PASSWORD
+              value: admin
+            - name: DJANGO_ADMIN_EMAIL
+              value: admin@example.com
       restartPolicy: Always
 ---
 apiVersion: v1

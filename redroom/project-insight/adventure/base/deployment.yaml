@@ -83,7 +83,7 @@ spec:
                   name: adventurelog-secret
                   key: adventure-postgres-password
             - name: PUBLIC_URL
-              value: "http://server:8000" # Match the outward port, used for the creation of image urls
+              value: "http://wanderlust-backend:80" # Match the outward port, used for the creation of image urls
             - name: FRONTEND_URL
               value: "http://wanderlust"
             - name: CSRF_TRUSTED_ORIGINS

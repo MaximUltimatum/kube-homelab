@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
 - base/deployment.yaml
 - base/loadbalancer.yaml
+- base/loadbalancer-backend.yaml
 - base/SealedAdventureLogSecret.yaml
 
 namespace: project-insight

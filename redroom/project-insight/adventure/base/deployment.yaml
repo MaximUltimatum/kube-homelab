@@ -88,13 +88,15 @@ spec:
             - name: FRONTEND_URL
               value: "http://wanderlust.kingfisher-halfmoon.ts.net:80"
             - name: CSRF_TRUSTED_ORIGINS
-              value: "http://wanderlust.kingfisher-halfmoon.ts.net:80, http://wanderlust:80, http://server:80, http://100.65.44.115:80"
+              value: "http://wanderlust.kingfisher-halfmoon.ts.net:80, http://wanderlust:80, http://server:80, http://100.65.44.115:80, http://10.233.70.51"
             - name: DJANGO_ADMIN_USERNAME
               value: "admin"
             - name: DJANGO_ADMIN_PASSWORD
               value: "admin"
             - name: DJANGO_ADMIN_EMAIL
               value: "admin@example.com"
+            - name: DEBUG
+              value: "True"
       restartPolicy: Always
 ---
 apiVersion: v1

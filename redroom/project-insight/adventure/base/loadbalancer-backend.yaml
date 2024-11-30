@@ -21,4 +21,3 @@ spec:
     targetPort: 443
   selector:
     app: adventure
-    name: adventure-backend

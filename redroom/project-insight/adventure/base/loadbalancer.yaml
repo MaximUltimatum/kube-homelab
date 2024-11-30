@@ -15,5 +15,9 @@ spec:
     port: 80
     protocol: TCP
     targetPort: 3000
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 3000
   selector:
     app: adventure

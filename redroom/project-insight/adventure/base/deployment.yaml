@@ -30,9 +30,9 @@ spec:
             - containerPort: 3000
           env:
             - name: PUBLIC_SERVER_URL
-              value: http://wanderlust-backend:80
+              value: https://wanderlust-backend.kingfisher-halfmoon.ts.net:443
             - name: ORIGIN
-              value: http://wanderlust
+              value: https://wanderlust.kingfisher-halfmoon.ts.net:443
               
         - name: adventure-db
           image: postgis/postgis:15-3.3
@@ -83,11 +83,11 @@ spec:
                   name: adventurelog-secret
                   key: adventure-postgres-password
             - name: PUBLIC_URL
-              value: "http://wanderlust-backend:80" # Match the outward port, used for the creation of image urls
+              value: "https://wanderlust-backend.kingfisher-halfmoon.ts.net:443" # Match the outward port, used for the creation of image urls
             - name: FRONTEND_URL
-              value: "http://wanderlust"
+              value: "https://wanderlust.kingfisher-halfmoon.ts.net:443"
             - name: CSRF_TRUSTED_ORIGINS
-              value: "https://wanderlust.kingfisher-halfmoon.ts.net, http://localhost:3000, http://wanderlust, http://127.0.0.1:3000, http://127.0.0.1:9123"
+              value: "https://wanderlust-backend.kingfisher-halfmoon.ts.net, https://wanderlust.kingfisher-halfmoon.ts.net, http://localhost:3000, http://wanderlust, http://127.0.0.1:3000, http://127.0.0.1:9123"
             - name: DJANGO_ADMIN_USERNAME
               value: "admin"
             - name: DJANGO_ADMIN_PASSWORD
@@ -119,15 +119,3 @@ spec:
   resources:
     requests:
       storage: 10Gi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: server
-spec:
-  selector:
-    app: adventure
-  ports:
-    - protocol: TCP
-      port: 8000
-      targetPort: 8000

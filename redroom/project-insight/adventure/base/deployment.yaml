@@ -88,7 +88,7 @@ spec:
             - name: FRONTEND_URL
               value: "http://wanderlust.kingfisher-halfmoon.ts.net:80"
             - name: CSRF_TRUSTED_ORIGINS
-              value: "http://wanderlust.kingfisher-halfmoon.ts.net, http://wanderlust, http://server"
+              value: "http://wanderlust.kingfisher-halfmoon.ts.net:80, http://wanderlust:80, http://server:80"
             - name: DJANGO_ADMIN_USERNAME
               value: "admin"
             - name: DJANGO_ADMIN_PASSWORD

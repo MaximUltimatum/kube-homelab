@@ -33,6 +33,8 @@ spec:
               value: "http://server:80"
             - name: ORIGIN
               value: "http://wanderlust.kingfisher-halfmoon.ts.net:80"
+            - name: BODY_SIZE_LIMIT
+              value: "Infinity"
               
         - name: adventure-db
           image: postgis/postgis:15-3.3
@@ -86,7 +88,7 @@ spec:
             - name: FRONTEND_URL
               value: "http://wanderlust.kingfisher-halfmoon.ts.net:80"
             - name: CSRF_TRUSTED_ORIGINS
-              value: "http://wanderlust.kingfisher-halfmoon.ts.net, http://wanderlust"
+              value: "http://wanderlust.kingfisher-halfmoon.ts.net, http://wanderlust, http://server"
             - name: DJANGO_ADMIN_USERNAME
               value: "admin"
             - name: DJANGO_ADMIN_PASSWORD

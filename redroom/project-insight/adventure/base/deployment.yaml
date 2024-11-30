@@ -107,7 +107,8 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 80
-    - protocol: TCP
+    - name: base 
+      protocol: TCP
       port: 8000
       targetPort: 8000
 ---

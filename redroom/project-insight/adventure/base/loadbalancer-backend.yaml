@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wanderlust-backend
+  namespace: project-insight
+  annotations:
+    tailscale.com/hostname: wanderlust-backend
+  labels:
+    tailscale.com/proxy-class: "irish-eyes"
+spec:
+  type: LoadBalancer
+  loadBalancerClass: tailscale
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+    - name: base
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
+  selector:
+    app: adventure
+---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  annotations:
+#    tailscale.com/tailnet-ip: 
+#  name: wanderlust-backend-tailscale   # service name
+#spec:
+#  externalName: placeholder   # any value - will be overwritten by operator
+#  type: ExternalName

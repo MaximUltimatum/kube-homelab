@@ -30,7 +30,7 @@ spec:
             - containerPort: 3000
           env:
             - name: PUBLIC_SERVER_URL
-              value: "http://server:80"
+              value: "http://100.84.185.34:80"
             - name: ORIGIN
               value: "http://wanderlust.kingfisher-halfmoon.ts.net:80"
             - name: BODY_SIZE_LIMIT
@@ -84,7 +84,7 @@ spec:
                   name: adventurelog-secret
                   key: adventure-postgres-password
             - name: PUBLIC_URL
-              value: "http://server:80" # Match the outward port, used for the creation of image urls
+              value: "http://100.84.185.34:80" # Match the outward port, used for the creation of image urls
             - name: FRONTEND_URL
               value: "http://wanderlust.kingfisher-halfmoon.ts.net:80"
             - name: CSRF_TRUSTED_ORIGINS

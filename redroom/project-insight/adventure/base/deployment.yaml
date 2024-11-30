@@ -68,7 +68,7 @@ spec:
               mountPath: /code/media
           env:
             - name: PGHOST
-              value: "localhost"
+              value: "adventure-db-svc"
             - name: PGDATABASE
               value: "database"
             - name: PGUSER
@@ -98,6 +98,19 @@ spec:
             - name: DEBUG
               value: "True"
       restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adventure-db-svc
+spec:
+  selector:
+    app: adventure
+  ports:
+    - name: db
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
 ---
 apiVersion: v1
 kind: Service

@@ -30,9 +30,9 @@ spec:
             - containerPort: 3000
           env:
             - name: PUBLIC_SERVER_URL
-              value: http://wanderlust-backend.kingfisher-halfmoon.ts.net:80
+              value: "http://wanderlust-backend.kingfisher-halfmoon.ts.net:80"
             - name: ORIGIN
-              value: http://wanderlust.kingfisher-halfmoon.ts.net:80
+              value: "http://wanderlust.kingfisher-halfmoon.ts.net:80"
               
         - name: adventure-db
           image: postgis/postgis:15-3.3
@@ -97,7 +97,6 @@ spec:
             - name: DEBUG
               value: "True"
       restartPolicy: Always
----
 ---
 apiVersion: v1
 kind: Service

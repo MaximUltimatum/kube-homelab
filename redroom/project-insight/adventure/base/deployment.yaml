@@ -30,7 +30,7 @@ spec:
             - containerPort: 3000
           env:
             - name: PUBLIC_SERVER_URL
-              value: http://server:8000
+              value: http://wanderlust-backend:80
             - name: ORIGIN
               value: http://wanderlust
               
@@ -123,25 +123,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: adventure-db
-spec:
-  selector:
-    app: adventure
-    name: adventure-db
-  ports:
-    - protocol: TCP
-      port: 5432
-      targetPort: 5432
----
-apiVersion: v1
-kind: Service
-metadata:
   name: server
 spec:
   selector:
     app: adventure
-    name: adventure-backend
   ports:
     - protocol: TCP
       port: 8000
-      targetPort: 80
+      targetPort: 8000

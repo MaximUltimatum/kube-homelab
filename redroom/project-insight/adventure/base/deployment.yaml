@@ -30,7 +30,7 @@ spec:
             - containerPort: 3000
           env:
             - name: PUBLIC_SERVER_URL
-              value: wanderlust-backend-tailnet-ip
+              value: "http://100.84.185.34:80"
             - name: ORIGIN
               value: "http://wanderlust.kingfisher-halfmoon.ts.net:80"
             - name: BODY_SIZE_LIMIT

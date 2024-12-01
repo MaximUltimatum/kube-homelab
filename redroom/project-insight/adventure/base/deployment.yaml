@@ -22,6 +22,9 @@ spec:
         - name: adventure-journal-db
           persistentVolumeClaim:
             claimName: adventure-journal-db-pvc
+        - name: nginx-replace
+          configMap:
+            name: adventure-backend-nginx-config
       containers:
         - name: adventure-frontend
           image: ghcr.io/seanmorley15/adventurelog-frontend:latest
@@ -66,6 +69,9 @@ spec:
           volumeMounts:
             - name: adventure-journal
               mountPath: /code/media
+            - name: nginx-replace
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
           env:
             - name: PGHOST
               value: "adventure-db-svc"

@@ -37,7 +37,7 @@ vikunja:
           # proxy-body-size is set to 0 to remove the body limit on file uploads
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
-        - host: project-pym-api
+        - host: pym-api
           paths:
             - path: "/api/v1"
         defaultBackend:
@@ -46,7 +46,7 @@ vikunja:
         ingressClassName: tailscale
         tls:
         - hosts:
-          - project-pym-api
+          - pym-api
     configMaps:
       # The configuration for Vikunja's api.
       # https://vikunja.io/docs/config-options/
@@ -88,7 +88,7 @@ vikunja:
             name: vikunja-credentials
             key: postgres-database
       VIKUNJA_DATABASE_DATABASE: vikunja
-      VIKUNJA_DATABASE_HOST: project-pym-postgresql
+      VIKUNJA_DATABASE_HOST: pym-postgresql
   
   
   frontend:
@@ -118,7 +118,7 @@ vikunja:
           # proxy-body-size is set to 0 to remove the body limit on file uploads
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
-        - host: project-pym
+        - host: pym
           paths:
             - path: /
         defaultBackend:
@@ -127,11 +127,11 @@ vikunja:
         ingressClassName: tailscale
         tls:
         - hosts:
-          - project-pym
+          - pym
     # If you've used the "built-in" ingress in the api section, you don't need to specify VIKUNJA_API_URL as an environment variable here.
     # If you've used something else, you'll need to provide the URL to the API here.
     env:
-      VIKUNJA_API_URL: https://project-pym-api.kingfisher-halfmoon.ts.net/api/v1
+      VIKUNJA_API_URL: https://pym-api.kingfisher-halfmoon.ts.net/api/v1
   
   ##########################
   # END VIKUNJA COMPONENTS #

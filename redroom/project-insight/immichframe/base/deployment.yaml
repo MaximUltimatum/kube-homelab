@@ -25,7 +25,7 @@ spec:
             - name: TZ
               value: "America/Chicago"
             - name: ImmichServerUrl
-              value: "https://project-insight-server:3001"
+              value: "http://project-insight-server:3001"
             - name: ApiKey
               valueFrom:
                 secretKeyRef:

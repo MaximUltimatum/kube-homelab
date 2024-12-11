@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: immich-frame
+  labels:
+    app: frame
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frame
+  template:
+    metadata:
+      name: frame
+      labels:
+        app: frame
+    spec:
+      containers:
+        - name: immichframe
+          image: ghcr.io/immichframe/immichframe:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TZ
+              value: "America/Chicago"
+            - name: ImmichServerUrl
+              value: "project-insight-server:3001"
+            - name: ApiKey: 
+              valueFrom:
+                secretKeyRef:
+                  name: immich-key
+                  key: immich-key
+            - name: ImageZoom 
+              value: "true"  
+            - name: Interval
+              value: "10"
+            - name: TransitionDuration
+              value: "2"
+            - name: Albums
+              value: "1db15ac6-bfc2-4261-8ec2-2755297274e4"
+              #- name: ExcludedAlbums: "ALBUM3,ALBUM4"
+              #- name: People: "PERSON1,PERSON2"
+            - name: ShowMemories
+              value: "true"
+            - name: ShowClock
+              value: "true"
+            - name: ClockFormat
+              value: "HH:mm"
+              #- name: WeatherApiKey: "API-KEY"
+              #- name: UnitSystem: "imperial"
+            - name: Language
+              value: "en"
+              #- name: ShowWeatherDescription: "true"
+              #- name: WeatherLatLong: "40.730610, -73.935242"
+            - name: ShowImageDesc
+              value: "true"
+            - name: ShowImageLocation
+              value: "true"
+            - name: ShowPhotoDate
+              value: "true"
+            - name: PhotoDateFormat
+              value: "yyyy-MM-dd"
+            - name: RefreshAlbumPeopleInterval
+              value: "12"
+            - name: ImmichFrameAlbumName
+              value: "Recently On Frame"
+      restartPolicy: Always

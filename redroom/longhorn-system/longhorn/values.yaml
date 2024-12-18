@@ -4,3 +4,6 @@
 longhorn:
   persistence:
     defaultClass: true
+  env:
+  - name: LONGHORN_INSECURE_SKIP_TLS_VERIFY
+    value: "true"

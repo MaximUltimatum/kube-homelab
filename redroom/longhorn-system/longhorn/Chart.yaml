@@ -6,5 +6,5 @@ sources:
   - https://longhorn.io/docs/1.2.4/deploy/install/install-with-helm/
 dependencies:
   - name: longhorn
-    version: 1.5.3
+    version: 1.6.4
     repository: "https://charts.longhorn.io/"

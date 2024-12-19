@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    tailscale.com/tailnet-fqdn: backups-ultron.kingfisher-halfmoon.ts.net
+  name: resolve-dammit   # service name
+spec:
+  externalName: anyValue   # any value - will be overwritten by operator
+  type: ExternalName

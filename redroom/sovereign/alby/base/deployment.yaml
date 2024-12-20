@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: soval
+  labels:
+    app: albine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: albine
+  template:
+    metadata:
+      name: albine
+      labels:
+        app: albine
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data-pvc
+      containers:
+        - name: alby
+          image: ghcr.io/getalby/hub:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          env:
+            - name: WORK_DIR
+              value: "/data"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-pvc
+  namespace: sovereign
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi

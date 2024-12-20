@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastenhealth
+  labels:
+    app: fasten
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fasten
+  template:
+    metadata:
+      name: fasten
+      labels:
+        app: fasten
+    spec:
+      volumes:
+        - name: medical-data
+          persistentVolumeClaim:
+            claimName: medical-data-pvc
+        - name: medical-data-cache
+          persistentVolumeClaim:
+            claimName: medical-data-cache-pvc
+      containers:
+        - name: fasten
+          image: ghcr.io/fastenhealth/fasten-onprem:main
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: medical-data
+              mountPath: /opt/fasten/db
+            - name: medical-data-cache
+              mountPath: /opt/fasten/cache
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: medical-data-pvc
+  namespace: medical
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: medical-data-cache-pvc
+  namespace: medical
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi

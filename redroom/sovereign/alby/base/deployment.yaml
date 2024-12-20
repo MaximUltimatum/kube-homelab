@@ -20,7 +20,7 @@ spec:
           persistentVolumeClaim:
             claimName: data-pvc
       containers:
-        - name: alby
+        - name: albine
           image: ghcr.io/getalby/hub:latest
           imagePullPolicy: Always
           ports:

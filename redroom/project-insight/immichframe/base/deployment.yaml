@@ -38,7 +38,7 @@ spec:
             - name: TransitionDuration
               value: "2"
             - name: Albums
-              value: "6bc7a843-2681-4351-8f06-588a194ec7c1"
+              value: "6bc7a843-2681-4351-8f06-588a194ec7c1,2efbbe36-888a-455e-acc3-fddae8807774"
               #- name: ExcludedAlbums: "ALBUM3,ALBUM4"
               #- name: People: "PERSON1,PERSON2"
             - name: ShowMemories

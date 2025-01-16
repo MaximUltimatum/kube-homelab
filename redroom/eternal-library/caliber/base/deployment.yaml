@@ -57,12 +57,13 @@ spec:
       restartPolicy: Always
 ---
 apiVersion: v1
-kind: PersistentVolume
+kind: PersistentVolumeClaim
 metadata:
-  name: caliber-config
+  name: caliber-storage
+  namespace: eternal-library
 spec:
-  capacity:
-    storage: 5Gi
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
+  resources:
+    requests:
+      storage: 5Gi

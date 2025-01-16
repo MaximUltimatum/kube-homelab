@@ -4,7 +4,8 @@ metadata:
   name: calibre
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/proxy-set-headers: "ingress-nginx/custom-headers"
 spec:
   ingressClassName: nginx
   rules:

@@ -4,6 +4,7 @@ metadata:
   name: calibre
   annotations: {}
 spec:
+  ingressClassName: nginx
   rules:
     - host: mitchwrap.maximstroud.de
       http:

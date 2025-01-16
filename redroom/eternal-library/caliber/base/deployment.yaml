@@ -59,7 +59,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: caliber-storage
+  name: caliber-config
   namespace: eternal-library
 spec:
   accessModes:

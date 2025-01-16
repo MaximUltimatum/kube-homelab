@@ -19,9 +19,9 @@ spec:
         - name: books-storage
           persistentVolumeClaim:
             claimName: books-pvc
-        - name: config-storage
+        - name: caliber-config
           persistentVolumeClaim:
-            claimName: caliber-config
+            claimName: caliber-config-pvc
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -52,14 +52,14 @@ spec:
             - name: books-storage
               mountPath: /books
               subPath: ebooks-calibre
-            - name: caliber-storage
+            - name: caliber-config
               mountPath: /config
       restartPolicy: Always
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: caliber-config
+  name: caliber-config-pvc
   namespace: eternal-library
 spec:
   accessModes:

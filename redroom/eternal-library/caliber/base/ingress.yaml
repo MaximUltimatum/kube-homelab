@@ -17,5 +17,5 @@ spec:
   tls:
     - hosts:
         - mitchwrap.maximstroud.de
-          secretName: maximstroud.de-cert
+      secretName: maximstroud.de-cert
 

@@ -6,5 +6,6 @@ resources:
 - base/deployment.yaml
 - base/loadbalancer.yaml
 - base/metallb-service.yaml
+- base/ingress.yaml
 
 namespace: eternal-library

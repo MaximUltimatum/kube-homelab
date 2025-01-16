@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: readin
+  labels:
+    app: readin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: readin
+  template:
+    metadata:
+      name: readin
+      labels:
+        app: readin
+    spec:
+      volumes:
+        - name: books-storage
+          persistentVolumeClaim:
+            claimName: books-pvc
+        - name: config-storage
+          persistentVolumeClaim:
+            claimName: caliber-config
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - dreykov
+      containers:
+        - name: readin
+          image: lscr.io/linuxserver/calibre-web:0.6.24-ls310
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: Etc/UTC
+            - name: DOCKER_MODS
+              value: linuxserver/mods:universal-calibre #optional
+            - name: OAUTHLIB_RELAX_TOKEN_SCOPE
+              value: "1" #optional
+          ports:
+            - containerPort: 8083
+          volumeMounts:
+            - name: books-storage
+              mountPath: /books
+              subPath: ebooks-calibre
+            - name: caliber-storage
+              mountPath: /config
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: caliber-config
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain

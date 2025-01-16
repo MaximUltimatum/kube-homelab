@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: alchemist
+  namespace: eternal-library
+  annotations:
+    tailscale.com/hostname: alchemist
+  labels:
+    tailscale.com/proxy-class: "irish-eyes"
+spec:
+  type: LoadBalancer
+  loadBalancerClass: tailscale
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8083
+  selector:
+    app: readin

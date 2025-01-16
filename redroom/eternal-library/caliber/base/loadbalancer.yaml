@@ -5,6 +5,7 @@ metadata:
   namespace: eternal-library
   annotations:
     tailscale.com/hostname: alchemist
+    tailscale.com/funnel: "true"
   labels:
     tailscale.com/proxy-class: "irish-eyes"
 spec:

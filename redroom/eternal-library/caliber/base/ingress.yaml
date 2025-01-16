@@ -1,17 +1,21 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: calibre-funnel
-  annotations:
-    tailscale.com/funnel: "true"
+  name: calibre
+  annotations: {}
 spec:
-  defaultBackend:
-    service:
-      name: alchemist
-      port:
-        number: 80
-  ingressClassName: tailscale
+  rules:
+    - host: mitchwrap.maximstroud.de
+      http:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: alchemist
+              port:
+                number: 80
   tls:
     - hosts:
-        - calibre-funnel
+        - mitchwrap.maximstroud.de
+          secretName: maximstroud.de-cert
 

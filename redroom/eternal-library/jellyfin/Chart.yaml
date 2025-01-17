@@ -1,0 +1,10 @@
+apiVersion: v2
+name: jellyfin
+type: application
+version: 0.0.1
+sources:
+  - https://github.com/jellyfin/jellyfin-helm/tree/master/charts/jellyfin
+dependencies:
+  - name: jellyfin
+    version: 2.1.0
+    repository: https://jellyfin.github.io/jellyfin-helm

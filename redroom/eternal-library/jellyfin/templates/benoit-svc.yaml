@@ -10,7 +10,7 @@ spec:
   type: LoadBalancer
   loadBalancerClass: tailscale
   ports:
-    - port: 443
+    - port: 80
       targetPort: 8096
   selector:
     app.kubernetes.io/instance: jellyfin

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: benoit
+  labels:
+    tailscale.com/proxy-class: "irish-eyes"
+spec:
+  type: LoadBalancer
+  loadBalancerClass: tailscale
+  ports:
+    - port: 443
+      targetPort: 8096
+  selector:
+    app.kubernetes.io/instance: jellyfin
+    app.kubernetes.io/name: jellyfin

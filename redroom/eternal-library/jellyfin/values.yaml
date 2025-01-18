@@ -113,14 +113,19 @@ readinessProbe:
   # periodSeconds: 10
 
 # -- Additional volumes to mount in the Jellyfin pod.
-volumes: []
+volumes:
+  - name: ransom-downloads
+    persistentVolumeClaim:
+      claimName: benoit-pvc
 # - name: foo
 #   secret:
 #     secretName: mysecret
 #     optional: false
 
 # -- Additional volume mounts for the Jellyfin container.
-volumeMounts: []
+volumeMounts:
+  - name: ransom-downloads
+    mountPath: /media
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true
@@ -158,15 +163,15 @@ persistence:
     # existingClaim: ''
   media:
     # -- set to false to use emptyDir
-    enabled: true
-    accessMode: ReadWriteOnce
-    size: 100Gi
-    # -- Custom annotations to be added to the PVC
-    annotations: {}
-    # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
-    storageClass: ''
-    ## -- Use an existing PVC for this mount
-    existingClaim: 'benoit-pvc'
+    enabled: false
+    # accessMode: ReadWriteOnce
+    # size: 100Gi
+    # # -- Custom annotations to be added to the PVC
+    # annotations: {}
+    # # -- If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner.
+    # storageClass: ''
+    # ## -- Use an existing PVC for this mount
+    # existingClaim: 'benoit-pvc'
 
 # -- Configuration for metrics collection and monitoring
 metrics:

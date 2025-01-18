@@ -124,9 +124,9 @@ jellyfin:
   #     optional: false
 
   # -- Additional volume mounts for the Jellyfin container.
-  volumeMounts:
-    - name: ransom-downloads
-      mountPath: /media
+  volumeMounts: []
+    #   - name: ransom-downloads
+    #    mountPath: /media
   # - name: foo
   #   mountPath: "/etc/foo"
   #   readOnly: true

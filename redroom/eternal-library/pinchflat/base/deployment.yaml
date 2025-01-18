@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hugh
+  labels:
+    app: ransom
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ransom
+  template:
+    metadata:
+      name: ransom
+      labels:
+        app: ransom
+    spec:
+      volumes:
+        - name: ransom-config
+          persistentVolumeClaim:
+            claimName: ransom-config-pvc
+        - name: ransom-downloads
+          persistentVolumeClaim:
+            claimName: benoit-pvc
+      containers:
+        - name: ransom-thrombey
+          image: ghcr.io/kieraneglin/pinchflat:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: America/Chicago
+          ports:
+            - containerPort: 8945
+          volumeMounts:
+            - name: ransom-config
+              mountPath: /config
+            - name: ransom-downloads
+              mountPath: /downloads
+              subPath: ransom
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ransom-config-pvc
+  namespace: eternal-library
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

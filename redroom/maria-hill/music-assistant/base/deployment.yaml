@@ -16,6 +16,16 @@ spec:
       labels:
         app: music-assistant
     spec:
+      hostNetwork: true
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - greywidow
       containers:
         - name: assistant
           image: ghcr.io/music-assistant/server:2.3.6

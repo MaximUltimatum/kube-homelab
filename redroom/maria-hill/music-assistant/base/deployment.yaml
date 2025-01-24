@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: music-assistant
+  name: music-assistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: music-assistant
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: music-assistant
+    spec:
+      containers:
+        - name: assistant
+          image: ghcr.io/music-assistant/server:2.3.6
+          securityContext:
+            privileged: true
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8095
+              protocol: TCP
+          volumeMounts:
+            - name: music-assistant-data
+              mountPath: /data
+      volumes:
+        - name: music-assistant-data
+          persistentVolumeClaim:
+            claimName: music-assistant-data

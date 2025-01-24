@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: music-assistant-conductor
+spec:
+  type: LoadBalancer
+  selector:
+    app: music-assistant
+  ports:
+  - name: music-assistant-port
+    protocol: TCP
+    port: 8095

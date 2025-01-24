@@ -26,6 +26,12 @@ spec:
             - name: http
               containerPort: 8095
               protocol: TCP
+            - name: streamserver
+              containerPort: 8097
+              protocol: TCP
+            - name: streamport
+              containerPort: 8098
+              protocol: TCP
           volumeMounts:
             - name: music-assistant-data
               mountPath: /data

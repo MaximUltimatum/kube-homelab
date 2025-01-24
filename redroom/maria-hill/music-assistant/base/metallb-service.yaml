@@ -10,3 +10,9 @@ spec:
   - name: music-assistant-port
     protocol: TCP
     port: 8095
+  - name: streamserver
+    containerPort: 8097
+    protocol: TCP
+  - name: streamport
+    containerPort: 8098
+    protocol: TCP

@@ -30,7 +30,7 @@ frigate:
     # -- enables the use of a Coral device
     enabled: true
     # -- path on the host to which to mount the Coral device
-    hostPath: /dev/bus/usb/002/003
+    hostPath: /dev/bus/usb/002/007
   
   gpu:
     nvidia:

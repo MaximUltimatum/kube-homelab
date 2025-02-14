@@ -16,6 +16,6 @@ spec:
   - name: streamport
     port: 8098
     protocol: TCP
-  - name: snapcastserver-connections
+  - name: snapcastserver
     port: 1704
     protocol: TCP

@@ -42,7 +42,7 @@ spec:
             - name: streamport
               containerPort: 8098
               protocol: TCP
-            - name: snapserver-connections
+            - name: snapserver
               containerPort: 1704
               protocol: TCP
           volumeMounts:

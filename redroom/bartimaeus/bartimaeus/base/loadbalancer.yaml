@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bartimaeus
+  annotations:
+    tailscale.com/hostname: bartimaeus
+  labels:
+    tailscale.com/proxy-class: "irish-eyes"
+spec:
+  type: LoadBalancer
+  loadBalancerClass: tailscale
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+  selector:
+    app: ollama

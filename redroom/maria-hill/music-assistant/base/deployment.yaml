@@ -35,16 +35,28 @@ spec:
           ports:
             - name: http
               containerPort: 8095
-              protocol: TCP
             - name: streamserver
               containerPort: 8097
-              protocol: TCP
             - name: streamport
               containerPort: 8098
-              protocol: TCP
-            - name: snapserver
+            - name: snap-audio
               containerPort: 1704
-              protocol: TCP
+            - name: snap-control
+              port: 1705
+            - name: snap-tcp-stream-4951
+              port: 4951
+            - name: snap-tcp-stream-4952
+              port: 4952
+            - name: snap-tcp-stream-4953
+              port: 4953
+            - name: snap-tcp-stream-4954
+              port: 4954
+            - name: snap-mopidy
+              port: 4850
+            - name: snap-chromecast
+              port: 4851
+            - name: snap-elab-bt
+              port: 4852
           volumeMounts:
             - name: music-assistant-data
               mountPath: /data

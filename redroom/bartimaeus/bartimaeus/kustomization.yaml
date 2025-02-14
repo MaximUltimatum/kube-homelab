@@ -6,4 +6,4 @@ resources:
 - base/deployment.yaml
 - base/loadbalancer.yaml
 
-namespace: sovereign
+namespace: bartimaeus

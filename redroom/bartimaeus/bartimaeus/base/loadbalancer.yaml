@@ -15,4 +15,4 @@ spec:
     targetPort: http
     protocol: TCP
   selector:
-    app: ollama
+    name: ollama

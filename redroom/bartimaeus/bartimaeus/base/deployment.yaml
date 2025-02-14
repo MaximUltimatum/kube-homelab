@@ -13,7 +13,7 @@ spec:
     metadata:
       labels:
         name: ollama
-        spec:
+    spec:
         #  affinity:
         #    nodeAffinity:
         #      requiredDuringSchedulingIgnoredDuringExecution:

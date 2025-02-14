@@ -16,4 +16,4 @@ spec:
     protocol: TCP
     targetPort: http
   selector:
-    app.kubernetes.io/component: open-webui,app.kubernetes.io/instance=openwebui
+    app.kubernetes.io/component: open-webui

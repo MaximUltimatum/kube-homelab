@@ -10,8 +10,9 @@ spec:
   type: LoadBalancer
   loadBalancerClass: tailscale
   ports:
-  - name: http
-    port: 80
-    targetPort: 11434
+  - port: 80
+    name: http
+    targetPort: http
+    protocol: TCP
   selector:
     app: ollama

@@ -42,6 +42,9 @@ spec:
             - name: streamport
               containerPort: 8098
               protocol: TCP
+            - name: snapserver-connections
+              containerPort: 1704
+              protocol: TCP
           volumeMounts:
             - name: music-assistant-data
               mountPath: /data

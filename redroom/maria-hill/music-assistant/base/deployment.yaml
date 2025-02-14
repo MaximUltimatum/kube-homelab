@@ -43,13 +43,13 @@ spec:
               containerPort: 1704
             - name: snap-control
               containerPort: 1705
-            - name: snap-tcp-stream-4951
+            - name: tcp-stream-4951
               containerPort: 4951
-            - name: snap-tcp-stream-4952
+            - name: tcp-stream-4952
               containerPort: 4952
-            - name: snap-tcp-stream-4953
+            - name: tcp-stream-4953
               containerPort: 4953
-            - name: snap-tcp-stream-4954
+            - name: tcp-stream-4954
               containerPort: 4954
             - name: snap-mopidy
               containerPort: 4850

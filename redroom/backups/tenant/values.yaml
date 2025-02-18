@@ -145,7 +145,7 @@ tenant:
                     - key: kubernetes.io/hostname
                       operator: In
                       values:
-                        - dreykov
+                        - shostakov
         ###
         # 
         # The `Requests or Limits <https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/>`__ for resources to associate to Tenant pods.

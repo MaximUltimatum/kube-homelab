@@ -30,7 +30,7 @@ spec:
                   - key: kubernetes.io/hostname
                     operator: In
                     values:
-                      - dreykov
+                      - shostakov
       containers:
         - name: readin
           image: lscr.io/linuxserver/calibre-web:0.6.24-ls310

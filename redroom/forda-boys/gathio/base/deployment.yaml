@@ -26,27 +26,27 @@ spec:
         - name: gathio-db-storage
           persistentVolumeClaim:
             claimName: gathio-db-pvc
-    containers:
-        - name: gathio-container
-          image: ghcr.io/lowercasename/gathio:latest
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 3000
-          volumeMounts:
-            - name: config-volume
-              mountPath: /app/config/config.toml
-              subPath: config.toml
-            - name: gathio-storage
-              mountPath: /app/static
-              subPath: static
-            - name: gathio-storage
-              mountPath: /app/public/events
-              subPath: images
-        - name: gathio-db
-          image: mongo:latest
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 27017
-          volumeMounts:
-            - name: gathio-db-storage
-              mountPath: /data/db
+      containers:
+          - name: gathio-container
+            image: ghcr.io/lowercasename/gathio:latest
+            imagePullPolicy: IfNotPresent
+            ports:
+              - containerPort: 3000
+            volumeMounts:
+              - name: config-volume
+                mountPath: /app/config/config.toml
+                subPath: config.toml
+              - name: gathio-storage
+                mountPath: /app/static
+                subPath: static
+              - name: gathio-storage
+                mountPath: /app/public/events
+                subPath: images
+          - name: gathio-db
+            image: mongo:latest
+            imagePullPolicy: IfNotPresent
+            ports:
+              - containerPort: 27017
+            volumeMounts:
+              - name: gathio-db-storage
+                mountPath: /data/db

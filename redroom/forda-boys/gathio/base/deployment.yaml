@@ -1,0 +1,90 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gathio-deployment
+  labels:
+    app: gathio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gathio
+  template:
+    metadata:
+      name: gathio-template
+      labels:
+        app: gathio
+    spec:
+      volumes:
+        - name: gathio-storage
+          persistentVolumeClaim:
+            claimName: gathio-pvc
+        - name: gathio-db-storage
+          persistentVolumeClaim:
+            claimName: gathio-db-pvc
+      containers:
+        - name: gathio-container
+          image: ghcr.io/lowercasename/gathio:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: gathio-storage
+              mountPath: /app/config
+              subPath: config
+            - name: gathio-storage
+              mountPath: /app/static
+              subPath: static
+            - name: gathio-storage
+              mountPath: /app/public/events
+              subPath: images
+        - name: gathio-db
+          image: mongo:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongodb-data-db
+              mountPath: /data/db
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gathio-pvc
+  namespace: forda-boys
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gathio-db-pvc
+  namespace: forda-boys
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gathio-svc
+  namespace: forda-boys
+  labels:
+    app: gathio
+spec:
+  selector:
+    app: gathio
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+  type: ClusterIP

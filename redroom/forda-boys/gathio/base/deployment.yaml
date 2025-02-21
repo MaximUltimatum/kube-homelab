@@ -45,7 +45,7 @@ spec:
           ports:
             - containerPort: 27017
           volumeMounts:
-            - name: mongodb-data-db
+            - name: gathio-db-storage
               mountPath: /data/db
       restartPolicy: Always
 ---

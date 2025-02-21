@@ -31,7 +31,7 @@ spec:
             image: ghcr.io/lowercasename/gathio:latest
             imagePullPolicy: IfNotPresent
             ports:
-              - containerPort: 3000
+              - containerPort: 443
             volumeMounts:
               - name: config-volume
                 mountPath: /app/config/config.toml

@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: calibre
+  name: gathio-ingress
   annotations:
 spec:
   ingressClassName: nginx
@@ -13,9 +13,9 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: alchemist
+                name: gathio-svc
                 port:
-                  number: 80
+                  number: 443
   tls:
     - hosts:
         - daboys.maximstroud.de

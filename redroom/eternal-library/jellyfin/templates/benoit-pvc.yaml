@@ -24,3 +24,6 @@ spec:
   volumeName: benoit-pv
   accessModes:
     - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti

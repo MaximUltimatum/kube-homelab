@@ -9,7 +9,7 @@
        # Your domain goes here. If there is a port it should be 'domain.com:port', but
        # otherwise just 'domain.com'.
        domain = "daboys.maximstroud.de"
-       # port = "443" # No port for now?
+       port = "443" # No port for now?
        email = "stroudmcdermott@gmail.com"
        site_name = "Ford A Boys"
        is_federated = false

@@ -5,5 +5,8 @@ kind: Kustomization
 resources:
 - base/deployment.yaml
 - base/ingress.yaml
+- base/gathio-storage.yaml
+- base/gathio-svc.yaml
+- base/gathio-config.yaml
 
 namespace: eternal-library

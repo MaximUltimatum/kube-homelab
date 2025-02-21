@@ -138,7 +138,15 @@ jellyfin:
   tolerations: []
 
   # -- Affinity rules for pod scheduling.
-  affinity: {}
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                  - shostakov
 
   jellyfin:
     # -- Enable DLNA. Requires host network. See: https://jellyfin.org/docs/general/networking/dlna.html

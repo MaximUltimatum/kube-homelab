@@ -50,4 +50,4 @@ spec:
           volumeMounts:
             - name: gathio-db-storage
               mountPath: /data/db
-      restartPolicy: Always
+  restartPolicy: Always

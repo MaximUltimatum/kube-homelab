@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-registry-proxy
+  labels:
+    app: registry-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: registry-proxy
+  template:
+    metadata:
+      name: registry-proxy
+      labels:
+        app: registry-proxy
+    spec:
+      volumes:
+        - name: docker-mirror-cache
+          persistentVolumeClaim:
+            claimName: docker-mirror-cache-pvc
+        - name: docker-mirror-certs
+          persistentVolumeClaim:
+            claimName: docker-mirror-certs-pvc
+      containers:
+        - name: registry-proxy
+          image: rpardini/docker-registry-proxy:0.6.5
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: ENABLE_MANIFEST_CACHE
+              value: "true"
+          ports:
+            - containerPort: 3128
+          volumeMounts:
+            - name: docker-mirror-cache
+              mountPath: /docker_mirror_cache
+            - name: docker-mirror-certs
+              mountPath: /ca
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: docker-mirror-cache-pvc
+  namespace: registry
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 200Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: docker-mirror-certs-pvc
+  namespace: registry
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

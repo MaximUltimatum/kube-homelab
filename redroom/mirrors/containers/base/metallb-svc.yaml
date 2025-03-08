@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: docker-mirror-conductor
+spec:
+  type: LoadBalancer
+  selector:
+    app: registry-proxy
+  ports:
+    - name: mirrorport
+      protocol: TCP
+      port: 3128

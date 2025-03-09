@@ -29,6 +29,8 @@ spec:
           env:
             - name: ENABLE_MANIFEST_CACHE
               value: "true"
+            - name: REGISTRIES
+              value: "registry.fedoraproject.org"
           ports:
             - containerPort: 3128
           volumeMounts:

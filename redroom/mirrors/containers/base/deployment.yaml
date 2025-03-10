@@ -30,7 +30,7 @@ spec:
             - name: ENABLE_MANIFEST_CACHE
               value: "true"
             - name: REGISTRIES
-              value: "registry.fedoraproject.org"
+              value: "registry.fedoraproject.org docker.io registry.access.redhat.com ghcr.io quay.io"
           ports:
             - containerPort: 3128
           volumeMounts:

@@ -21,7 +21,7 @@ spec:
             claimName: recipe-book-pvc
       containers:
         - name: mealie
-          image: ghcr.io/mealie-recipes/mealie:v2.2.0 
+          image: ghcr.io/mealie-recipes/mealie:v2.7.1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9000
@@ -33,6 +33,25 @@ spec:
               value: sqlite
             - name: BASE_URL
               value: yelena.kingfisher-halfmoon.ts.net
+            - name: SMTP_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: smtp-secrets
+                  key: smtp-host
+            - name: SMTP_USER
+              valueFrom:
+                secretKeyRef:
+                  name: smtp-secrets
+                  key: smtp-username
+            - name: SMTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: smtp-secrets
+                  key: smtp-password
+            - name: SMTP_FROM_NAME
+              value: Yelena
+            - name: SMTP_FROM_EMAIL
+              value: yelena@maximstroud.de
       restartPolicy: Always
 ---
 apiVersion: v1

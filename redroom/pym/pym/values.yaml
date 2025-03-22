@@ -4,10 +4,10 @@ vikunja:
   ## Here's the link to the values.yaml file: https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml
   ## Refer there for more detail about the supported values.
   ## Any values that you find in the above `values.yaml` can be provided to this chart and are then rendered.
-  
+
   image:
     tag: 0.24.5
-  
+
   ######################
   # VIKUNJA COMPONENTS #
   ######################
@@ -37,16 +37,16 @@ vikunja:
           # proxy-body-size is set to 0 to remove the body limit on file uploads
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
-        - host: pym-api
-          paths:
-            - path: "/api/v1"
+          - host: pym-api
+            paths:
+              - path: "/api/v1"
         defaultBackend:
           service:
             name: vikunja
         ingressClassName: tailscale
         tls:
-        - hosts:
-          - pym-api
+          - hosts:
+              - pym-api
     configMaps:
       # The configuration for Vikunja's api.
       # https://vikunja.io/docs/config-options/
@@ -58,7 +58,7 @@ vikunja:
             # So you might need to provide its value, if you're not using an ingress.
             # service:
             #   frontendUrl: http://vikunja.local
-  
+
             typesense:
               # Typesense will only work if it is enabled below (typesense.enabled).
               url: "{{ printf "%s-typesense" .Release.Name }}:8108"
@@ -89,8 +89,28 @@ vikunja:
             key: postgres-database
       VIKUNJA_DATABASE_DATABASE: vikunja
       VIKUNJA_DATABASE_HOST: pym-postgresql
-  
-  
+      VIKUNJA_DEFAULTSETTINGS_EMAIL_REMINDERS_ENABLED: true
+      VIKUNJA_DEFAULTSETTINGS_WEEK_START: 1
+      VIKUNJA_DEFAULTSETTINGS_OVERDUE_TASKS_REMINDERS_TIME: 7:00
+      VIKUNJA_DEFAULTSETTINGS_DISCOVERABLE_BY_NAME: true
+      VIKUNJA_MAILER_ENABLED: true
+      VIKUNJA_MAILER_HOST:
+        valueFrom:
+          secretKeyRef:
+            name: smtp-secrets
+            key: smtp-host
+      VIKUNJA_MAILER_USERNAME:
+        valueFrom:
+          secretKeyRef:
+            name: smtp-secrets
+            key: smtp-username
+      VIKUNJA_MAILER_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: smtp-secrets
+            key: smtp-password
+      VIKUNJA_MAILER_FROMEMAIL: pym@maximultimatum.de
+
   frontend:
     enabled: true
     # You can add any of the top-level keys in the common chart's `values.yaml` to override them here.
@@ -107,7 +127,7 @@ vikunja:
     service:
       main:
         type: ClusterIP
-  
+
     # https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml#L393-L436
     ingress:
       main:
@@ -118,25 +138,25 @@ vikunja:
           # proxy-body-size is set to 0 to remove the body limit on file uploads
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
-        - host: pym
-          paths:
-            - path: /
+          - host: pym
+            paths:
+              - path: /
         defaultBackend:
           service:
             name: vikunja
         ingressClassName: tailscale
         tls:
-        - hosts:
-          - pym
+          - hosts:
+              - pym
     # If you've used the "built-in" ingress in the api section, you don't need to specify VIKUNJA_API_URL as an environment variable here.
     # If you've used something else, you'll need to provide the URL to the API here.
     env:
       VIKUNJA_API_URL: https://pym-api.kingfisher-halfmoon.ts.net/api/v1
-  
+
   ##########################
   # END VIKUNJA COMPONENTS #
   ##########################
-  
+
   # Optional Dependencies
   postgresql:
     enabled: true
@@ -144,13 +164,13 @@ vikunja:
       postgresql:
         auth:
           existingSecret: vikunja-credentials
-  
+
   redis:
     enabled: false
     architecture: standalone
     auth:
       enabled: false
-  
+
   typesense:
     enabled: true
     env:
@@ -163,7 +183,7 @@ vikunja:
         accessMode: ReadWriteOnce
         size: 2Gi
         # storageClass: storage-class
-  
+
     image:
       repository: docker.io/typesense/typesense
       tag: 0.25.1

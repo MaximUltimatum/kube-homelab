@@ -4,7 +4,7 @@ home-assistant:
     repository: ghcr.io/home-assistant/home-assistant
     # -- image tag
     # @default -- chart.appVersion
-    tag: "stable"
+    tag: "latest"
     # -- image pull policy
     pullPolicy: IfNotPresent
   

@@ -98,6 +98,7 @@ frigate:
             - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.84:554/cam/realmonitor?channel=1&subtype=0
               roles:
                 - detect
+                - record
         detect:
           enabled: true
           width: 1280
@@ -121,10 +122,24 @@ frigate:
             - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.85:554/cam/realmonitor?channel=1&subtype=0
               roles:
                 - detect
+                - record
         detect:
           enabled: true
           width: 1280
           height: 720
+        record:
+          enabled: True
+          retain:
+            days: 3
+            mode: all
+          alerts:
+            retain:
+              days: 30
+              mode: motion
+          detections:
+            retain:
+              days: 30
+              mode: motion
         snapshots:
           enabled: true
         objects:
@@ -255,7 +270,7 @@ frigate:
       accessMode: ReadWriteOnce
 
       # -- size/capacity of the PVC
-      size: 100Gi
+      size: 300Gi
 
       # -- Do not delete the pvc upon helm uninstall
       skipuninstall: false

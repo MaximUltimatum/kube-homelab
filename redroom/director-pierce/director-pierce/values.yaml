@@ -2,58 +2,58 @@ frigate:
   # Default values for frigate.
   # This is a YAML-formatted file.
   # Declare variables to be passed into your templates.
-  
+
   # -- upgrade strategy type (e.g. Recreate or RollingUpdate)
   strategyType: Recreate
-  
+
   image:
     # -- Docker registry/repository to pull the image from
     repository: ghcr.io/blakeblackshear/frigate
     # -- Overrides the default tag (appVersion) used in Chart.yaml ([Docker Hub](https://hub.docker.com/r/blakeblackshear/frigate/tags?page=1))
-    tag: 0.13.2
+    tag: 0.15.0
     # -- Docker image pull policy
     pullPolicy: IfNotPresent
-  
+
   # -- Docker image pull policy
   imagePullSecrets: []
-  
+
   # -- additional ENV variables to set. Prefix with FRIGATE_ to target Frigate configuration values
   env:
     TZ: CST
-  
+
   # -- set environment variables from Secret(s)
   envFromSecrets:
     # secrets are required before `helm install`
     - frigate-rstp-credentials
-  
+
   coral:
     # -- enables the use of a Coral device
     enabled: true
     # -- path on the host to which to mount the Coral device
     hostPath: /dev/bus/usb/002/007
-  
+
   gpu:
     nvidia:
       # -- Enables NVIDIA GPU compatibility. Must also use the "amd64nvidia" tagged image
       enabled: false
-  
+
       # -- Overrides the default runtimeClassName
       runtimeClassName:
-  
+
   # -- declare extra volumes to use for Frigate
   extraVolumes: []
   # -- declare additional volume mounts
   extraVolumeMounts: []
-  
+
   # -- amount of shared memory to use for caching
   shmSize: 1Gi
-  
+
   # nameOverride -- Overrides the name of resources
   nameOverride: ""
-  
+
   # fullnameOverride -- Overrides the Full Name of resources
   fullnameOverride: ""
-  
+
   # -- frigate configuration - see [Docs](https://docs.frigate.video/configuration/index) for more info
   config: |
     mqtt:
@@ -75,7 +75,7 @@ frigate:
       # password: password
       # Optional: interval in seconds for publishing stats (default: shown below)
       stats_interval: 60
-  
+
     detectors:
       coral:
         type: edgetpu
@@ -88,8 +88,8 @@ frigate:
           - rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.84:554/cam/realmonitor?channel=1&subtype=0
         back_door:
           - rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.85:554/cam/realmonitor?channel=1&subtype=0
-    
-  
+
+
     cameras:
       # Name of your camera
       front_door:
@@ -98,7 +98,6 @@ frigate:
             - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.84:554/cam/realmonitor?channel=1&subtype=0
               roles:
                 - detect
-                - rtmp
         detect:
           enabled: true
           width: 1280
@@ -122,7 +121,6 @@ frigate:
             - path: rtsp://{FRIGATE_RSTP_USERNAME}:{FRIGATE_RTSP_PASSWORD}@192.168.4.85:554/cam/realmonitor?channel=1&subtype=0
               roles:
                 - detect
-                - rtmp
         detect:
           enabled: true
           width: 1280
@@ -140,7 +138,7 @@ frigate:
             - cell phone
             - baseball bat
         # fps: 5
-  
+
   # Probes configuration
   probes:
     liveness:
@@ -157,7 +155,7 @@ frigate:
       enabled: false
       failureThreshold: 30
       periodSeconds: 10
-  
+
   service:
     # -- Type of Service to use
     type: ClusterIP
@@ -173,19 +171,19 @@ frigate:
     ##
     annotations: {}
     labels: {}
-  
+
     # -- Set specific IP address for LoadBalancer. `service.type` must be set to `LoadBalancer`
     loadBalancerIP:
-  
+
     # loadBalancerSourceRanges: []
     ## Set the externalTrafficPolicy in the Service to either Cluster or Local
     # externalTrafficPolicy: Cluster
-  
+
     # default IP family to use for the service
     ipFamilyPolicy: SingleStack
     # ipFamilies for service
     ipFamilies: []
-  
+
   ingress:
     enabled: false
     # -- Enable and configure ingress settings for the chart under this key.
@@ -197,7 +195,7 @@ frigate:
     hosts:
       - host: pierce
         paths:
-          - '/'
+          - "/"
         port: 5000
     defaultBackend:
       ingressClassName: tailscale
@@ -207,8 +205,8 @@ frigate:
           number: 5000
     tls:
       - hosts:
-        - pierce
-  
+          - pierce
+
   persistence:
     config:
       # -- Enables persistence for the config directory
@@ -262,13 +260,9 @@ frigate:
       # -- Do not delete the pvc upon helm uninstall
       skipuninstall: false
 
-
-
-
-
-  
   # -- Set resource limits/requests for the Pod(s)
-  resources: {}
+  resources:
+    {}
     # limits:
     #   cpu: 100m
     #   memory: 128Mi
@@ -277,7 +271,7 @@ frigate:
     #   cpu: 100m
     #   memory: 128Mi
     #   gpu.intel.com/i915: 1
-  
+
   # -- Set Security Context
   securityContext:
     # capabilities:
@@ -287,23 +281,23 @@ frigate:
     # runAsNonRoot: true
     # runAsUser: 1000
     privileged: true
-  
+
   # -- Node Selector configuration
   nodeSelector: {}
-  
+
   # -- Node toleration configuration
   tolerations: []
-  
+
   # -- Set Pod affinity rules
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
-        - matchExpressions:
-          - key: app
-            operator: In
-            values:
-            - coral
-  
+          - matchExpressions:
+              - key: app
+                operator: In
+                values:
+                  - coral
+
   # -- Set additonal pod Annotations
   podAnnotations: {}

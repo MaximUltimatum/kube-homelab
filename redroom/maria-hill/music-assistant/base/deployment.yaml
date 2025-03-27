@@ -28,7 +28,7 @@ spec:
                       - greywidow
       containers:
         - name: assistant
-          image: ghcr.io/music-assistant/server:2.3.6
+          image: ghcr.io/music-assistant/server:2.4.4
           securityContext:
             privileged: true
           imagePullPolicy: IfNotPresent

@@ -3,7 +3,7 @@ jellyfin:
     # -- Container image repository for Jellyfin.
     repository: docker.io/jellyfin/jellyfin
     # -- Jellyfin container image tag. Leave empty to automatically use the Chart's app version.
-    tag: "10.10.1"
+    tag: "10.10.7"
     # -- Image pull policy (Always, IfNotPresent, or Never).
     pullPolicy: IfNotPresent
 

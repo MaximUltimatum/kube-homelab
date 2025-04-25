@@ -19,7 +19,7 @@ immich:
           key: postgres-password
   
   image:
-    tag: v1.116.0
+    tag: v1.132.1
   
   immich:
     persistence:

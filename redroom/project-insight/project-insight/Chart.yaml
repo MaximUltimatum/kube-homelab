@@ -1,7 +1,7 @@
 apiVersion: v2
 name: project-insight
 type: application
-version: 0.0.2
+version: 0.0.3
 sources:
   - https://github.com/immich-app/immich-charts
 dependencies:

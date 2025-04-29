@@ -61,7 +61,7 @@ immich:
           service:
             name: project-insight-server
             port:
-              number: 3001
+              number: 2283
         tls:
           - hosts:
               - project-insight

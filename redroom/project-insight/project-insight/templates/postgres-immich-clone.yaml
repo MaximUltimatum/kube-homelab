@@ -136,3 +136,21 @@ spec:
                     apiVersion: v1
                     fieldPath: metadata.namespace
                   path: namespace
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: immich-labmouse
+  namespace: project-insight
+  labels:
+    app: immich-labmouse
+    service: postgresql
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+      targetPort: tcp-postgresql
+      protocol: TCP
+      name: postgresql
+  selector:
+    name: immich-labmouse

@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  create-extensions.sql: |
+    CREATE EXTENSION cube;
+    CREATE EXTENSION earthdistance;
+    CREATE EXTENSION vectors;
+kind: ConfigMap
+metadata:
+  name: project-insight-postgresql-init-scripts
+  namespace: project-insight

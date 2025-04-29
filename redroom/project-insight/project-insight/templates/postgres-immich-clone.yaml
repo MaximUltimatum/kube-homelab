@@ -1,0 +1,138 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: immich-labmouse
+  namespace: project-insight
+spec:
+  containers:
+    - env:
+        - name: POSTGRESQL_PORT_NUMBER
+          value: "5432"
+        - name: POSTGRESQL_VOLUME_DIR
+          value: /bitnami/postgresql
+        - name: PGDATA
+          value: /bitnami/postgresql/data
+        - name: POSTGRES_USER
+          value: immich
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: immich-insight-clearance
+        - name: POSTGRES_POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: postgres-password
+              name: immich-insight-clearance
+        - name: POSTGRES_DATABASE
+          value: immich
+        - name: POSTGRESQL_ENABLE_LDAP
+          value: "no"
+        - name: POSTGRESQL_ENABLE_TLS
+          value: "no"
+        - name: POSTGRESQL_LOG_HOSTNAME
+          value: "false"
+        - name: POSTGRESQL_LOG_CONNECTIONS
+          value: "false"
+        - name: POSTGRESQL_LOG_DISCONNECTIONS
+          value: "false"
+        - name: POSTGRESQL_PGAUDIT_LOG_CATALOG
+          value: "off"
+        - name: POSTGRESQL_CLIENT_MIN_MESSAGES
+          value: error
+        - name: POSTGRESQL_SHARED_PRELOAD_LIBRARIES
+          value: pgaudit
+      image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        exec:
+          command:
+            - /bin/sh
+            - -c
+            - exec pg_isready -U "immich" -d "dbname=immich" -h 127.0.0.1 -p 5432
+        failureThreshold: 6
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      name: postgresql
+      ports:
+        - containerPort: 5432
+          name: tcp-postgresql
+          protocol: TCP
+      readinessProbe:
+        exec:
+          command:
+            - /bin/sh
+            - -c
+            - -e
+            - |
+              exec pg_isready -U "immich" -d "dbname=immich" -h 127.0.0.1 -p 5432
+        failureThreshold: 6
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      resources:
+        requests:
+          cpu: 250m
+          memory: 256Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        privileged: false
+        readOnlyRootFilesystem: false
+        runAsNonRoot: true
+        runAsUser: 1001
+        seccompProfile:
+          type: RuntimeDefault
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+        - mountPath: /docker-entrypoint-initdb.d/
+          name: custom-init-scripts
+        - mountPath: /dev/shm
+          name: dshm
+        - mountPath: /bitnami/postgresql
+          name: data
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: kube-api-access-b2c8f
+          readOnly: true
+  restartPolicy: Always
+  securityContext:
+    fsGroup: 1001
+  serviceAccount: default
+  serviceAccountName: default
+  subdomain: project-insight-postgresql-hl
+  terminationGracePeriodSeconds: 30
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: data-project-insight-postgresql-0
+    - configMap:
+        defaultMode: 420
+        name: project-insight-postgresql-init-scripts
+      name: custom-init-scripts
+    - emptyDir:
+        medium: Memory
+      name: dshm
+    - name: kube-api-access-b2c8f
+      projected:
+        defaultMode: 420
+        sources:
+          - serviceAccountToken:
+              expirationSeconds: 3607
+              path: token
+          - configMap:
+              items:
+                - key: ca.crt
+                  path: ca.crt
+              name: kube-root-ca.crt
+          - downwardAPI:
+              items:
+                - fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+                  path: namespace

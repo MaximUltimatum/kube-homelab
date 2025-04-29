@@ -7,7 +7,8 @@ immich:
 
   env:
     REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
-    DB_HOSTNAME: "10.233.67.120"
+    #DB_HOSTNAME: "10.233.67.120"
+    DB_HOSTNAME: "immich-labmouse"
     DB_USERNAME: "immich"
     DB_DATABASE_NAME: "immich"
     # -- You should provide your own secret outside of this helm-chart and use `postgresql.global.postgresql.auth.existingSecret` to provide credentials to the postgresql instance
@@ -65,12 +66,6 @@ immich:
         tls:
           - hosts:
               - project-insight
-
-  microservices:
-    enabled: true
-    image:
-      repository: ghcr.io/immich-app/immich-server
-      pullPolicy: IfNotPresent
 
   machine-learning:
     enabled: true

@@ -35,14 +35,14 @@ vikunja:
         hosts:
           - host: pym
             paths:
-              - path: "/api/v1"
+              - path: /
         defaultBackend:
           service:
             name: vikunja
         ingressClassName: tailscale
         tls:
           - hosts:
-              - pym-api
+              - pym
     configMaps:
       # The configuration for Vikunja's api
       # https://vikunja.io/docs/config-options/

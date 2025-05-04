@@ -5,19 +5,15 @@ vikunja:
   ## Refer there for more detail about the supported values.
   ## Any values that you find in the above `values.yaml` can be provided to this chart and are then rendered.
 
-  image:
-    tag: 0.24.5
-
   ######################
   # VIKUNJA COMPONENTS #
   ######################
   # You can find the default values that this `values.yaml` overrides, in the comment at the top of this file.
-  api:
-    enabled: true
+  vikunja:
     image:
-      repository: vikunja/api
-      tag: 0.21.0
-      pullPolicy: IfNotPresent
+      repository: vikunja/vikunja
+      tag: 0.24.6
+      #pullPolicy: Always
     persistence:
       # This is your Vikunja data will live, you can either let
       # the chart create a new PVC for you or provide an existing one.
@@ -37,7 +33,7 @@ vikunja:
           # proxy-body-size is set to 0 to remove the body limit on file uploads
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
-          - host: pym-api
+          - host: pym
             paths:
               - path: "/api/v1"
         defaultBackend:
@@ -48,24 +44,21 @@ vikunja:
           - hosts:
               - pym-api
     configMaps:
-      # The configuration for Vikunja's api.
+      # The configuration for Vikunja's api
       # https://vikunja.io/docs/config-options/
-      config:
+      api-config:
         enabled: true
         data:
           config.yml: |
-            # Vikunja needs to know the frontend URL for password reset emails.
-            # So you might need to provide its value, if you're not using an ingress.
-            # service:
-            #   frontendUrl: http://vikunja.local
-
             typesense:
-              # Typesense will only work if it is enabled below (typesense.enabled).
-              url: "{{ printf "%s-typesense" .Release.Name }}:8108"
+              # These configuration values will automatically apply
+              # if the integrated Typesense is enabled below (typesense.enabled)
+              url: "http://{{ printf "%s-typesense" .Release.Name }}:8108"
               apiKey: "{{ .Values.typesense.env.TYPESENSE_API_KEY }}"
             redis:
-              # Redis will only work if it is enabled below (redis.enabled).
-              host: "{{ printf "%s-redis-master" .Release.Name }}:6379"
+              # These configuration values will automatically apply
+              # if the integrated Redis is enabled below (redis.enabled)
+              host: "http://{{ printf "%s-redis-master" .Release.Name }}:6379"
               db: "{{ .Release.Name }}"
     env:
       # To utilize a secret in the environment variables, you can do something like the following: https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml#L141-L145
@@ -111,60 +104,30 @@ vikunja:
             key: smtp-password
       VIKUNJA_MAILER_FROMEMAIL: pym@maximultimatum.de
 
-  frontend:
-    enabled: true
-    # You can add any of the top-level keys in the common chart's `values.yaml` to override them here.
-    # For example, this values.yaml file overrides the image values, located here:
-    # https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml#L63-L69
-    image:
-      repository: vikunja/frontend
-      tag: 0.21.0
-      pullPolicy: IfNotPresent
-    # You can use either a `service` or an `ingress` to interact with Vikunja's frontend.
-    # `Ingress` is the recommended option, but you can still set the `service` to
-    # `LoadBalancer` or another service type.
-    # https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml#L294-L354
-    service:
-      main:
-        type: ClusterIP
-
-    # https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml#L393-L436
-    ingress:
-      main:
-        enabled: true
-        labels:
-          tailscale.com/proxy-class: "irish-eyes"
-        annotations:
-          # proxy-body-size is set to 0 to remove the body limit on file uploads
-          nginx.ingress.kubernetes.io/proxy-body-size: "0"
-        hosts:
-          - host: pym
-            paths:
-              - path: /
-        defaultBackend:
-          service:
-            name: vikunja
-        ingressClassName: tailscale
-        tls:
-          - hosts:
-              - pym
-    # If you've used the "built-in" ingress in the api section, you don't need to specify VIKUNJA_API_URL as an environment variable here.
-    # If you've used something else, you'll need to provide the URL to the API here.
-    env:
-      VIKUNJA_API_URL: https://pym-api.kingfisher-halfmoon.ts.net/api/v1
-
   ##########################
   # END VIKUNJA COMPONENTS #
   ##########################
 
   # Optional Dependencies
+
+  #  ┬─┐┌─┐┐─┐┌┐┐┌─┐┬─┐┬─┐┐─┐┐─┐┬
+  #  │─┘│ │└─┐ │ │ ┬│┬┘├─ └─┐│ ││
+  #  ┘  ┘─┘──┘ ┘ ┘─┘┘└┘┴─┘──┘└─\┘─┘
+  # Please refer to PostgreSQL subchart for a full list of possible values
+  # https://github.com/bitnami/charts/tree/main/bitnami/postgresql/#parameters
   postgresql:
     enabled: true
-    global:
-      postgresql:
-        auth:
-          existingSecret: vikunja-credentials
+    primary:
+      networkPolicy:
+        enabled: false
+    auth:
+      existingSecret: vikunja-credentials
 
+  #  ┬─┐┬─┐┬─┐o┐─┐
+  #  │┬┘├─ │ ││└─┐
+  #  ┘└┘┴─┘┘─┘┘──┘
+  # Please refer to Redis subchart for a full list of possible values
+  # https://github.com/bitnami/charts/tree/main/bitnami/redis/#parameters
   redis:
     enabled: false
     architecture: standalone
@@ -188,3 +151,4 @@ vikunja:
       repository: docker.io/typesense/typesense
       tag: 0.25.1
       pullPolicy: IfNotPresent
+

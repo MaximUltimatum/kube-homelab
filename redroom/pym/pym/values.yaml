@@ -40,7 +40,7 @@ vikunja:
               - path: /
         defaultBackend:
           service:
-            name: vikunja
+            name: pym-vikunja
         ingressClassName: tailscale
         tls:
           - hosts:

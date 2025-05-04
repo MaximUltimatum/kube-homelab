@@ -6,7 +6,7 @@ vikunja:
   ## Any values that you find in the above `values.yaml` can be provided to this chart and are then rendered.
 
   image:
-    tag: 0.24.5
+    tag: 0.24.6
 
   ######################
   # VIKUNJA COMPONENTS #
@@ -16,7 +16,7 @@ vikunja:
     enabled: true
     image:
       repository: vikunja/api
-      tag: 0.21.0
+      tag: 0.24.6
       pullPolicy: IfNotPresent
     persistence:
       # This is your Vikunja data will live, you can either let
@@ -118,7 +118,7 @@ vikunja:
     # https://github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.yaml#L63-L69
     image:
       repository: vikunja/frontend
-      tag: 0.21.0
+      tag: 0.24.6
       pullPolicy: IfNotPresent
     # You can use either a `service` or an `ingress` to interact with Vikunja's frontend.
     # `Ingress` is the recommended option, but you can still set the `service` to

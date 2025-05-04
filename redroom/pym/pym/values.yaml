@@ -15,6 +15,8 @@ vikunja:
       tag: 0.24.6
       #pullPolicy: Always
     persistence:
+      config:
+        name: "{{ .Release.Name }}-vikunja-api-config"
       # This is your Vikunja data will live, you can either let
       # the chart create a new PVC for you or provide an existing one.
       data:
@@ -46,7 +48,7 @@ vikunja:
     configMaps:
       # The configuration for Vikunja's api
       # https://vikunja.io/docs/config-options/
-      pym:
+      api-config:
         enabled: true
         data:
           config.yml: |

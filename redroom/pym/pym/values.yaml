@@ -46,7 +46,7 @@ vikunja:
     configMaps:
       # The configuration for Vikunja's api
       # https://vikunja.io/docs/config-options/
-      config:
+      api-config:
         enabled: true
         data:
           config.yml: |

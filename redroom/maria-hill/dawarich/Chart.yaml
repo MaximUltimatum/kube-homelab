@@ -1,0 +1,10 @@
+apiVersion: v2
+name: dawarich
+type: application
+version: 0.0.1
+sources:
+  - https://github.com/Cogitri/charts/tree/master/charts/dawarich
+dependencies:
+  - name: dawarich
+    version: 0.6.6
+    repository: https://charts.cogitri.dev

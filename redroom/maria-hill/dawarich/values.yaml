@@ -134,6 +134,7 @@ service:
   port: 3000
 
 ingress:
+  enabled: false
   # enabled: true
   # className: ""
   # annotations: {}
@@ -148,14 +149,3 @@ ingress:
   # #  - secretName: chart-example-tls
   # #    hosts:
   # #      - chart-example.local
-  enabled: true
-  labels:
-    tailscale.com/proxy-class: "irish-eyes"
-  className: tailscale
-  hosts:
-    - host: tracks
-      paths:
-        - path: "/"
-  tls:
-    - hosts:
-        - tracks

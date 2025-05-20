@@ -73,9 +73,6 @@ dawarich:
       # Either set the postgresql credentials in the helm chart, or provide your own secret.
       database: dawarich
       existingSecret: dawarich-secrets
-      secretKeys:
-        adminPasswordKey: postgresql-postgres-password
-        userPasswordKey: postgresql-password
     primary:
       persistence:
         enabled: true

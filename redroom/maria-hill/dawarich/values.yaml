@@ -6,7 +6,6 @@ dawarich:
 
   keyBase:
     existingSecret: dawarich-secrets
-    value: keybase
 
   env:
     minMinutesSpentInCity: "60"

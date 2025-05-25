@@ -20,7 +20,7 @@ dawarich:
 
   dawarich:
     replicaCount: 1
-    host: "tracks.kingfisher-halfmoon.ts.net,tracks,100.105.118.30,127.0.0.1,localhost,10.0.0.0/8"
+    host: "*"
 
   sidekiq:
     replicaCount: 1

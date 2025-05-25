@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dawarich-app
+spec:
+  selector:
+    matchLabels:
+      app: dawarich-app
+  template:
+    metadata:
+      labels:
+        app: dawarich-app
+    spec:
+      containers:
+        - name: app
+          image: freikin/dawarich:latest
+          command: ["bin/rails", "server", "-p", "3000", "-b", "::"]
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: dawarich-config
+            - secretRef:
+                name: dawarich-secrets
+          volumeMounts:
+            - name: public-data
+              mountPath: /var/app/public
+            - name: watched-data
+              mountPath: /var/app/tmp/imports/watched
+            - name: storage-data
+              mountPath: /var/app/storage
+          livenessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 10
+            failureThreshold: 30
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "4Gi"
+      volumes:
+        - name: public-data
+          persistentVolumeClaim:
+            claimName: dawarich-public-pvc
+        - name: watched-data
+          persistentVolumeClaim:
+            claimName: dawarich-watched-pvc
+        - name: storage-data
+          persistentVolumeClaim:
+            claimName: dawarich-storage-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dawarich-app
+spec:
+  ports:
+    - port: 3000
+      targetPort: 3000
+  selector:
+    app: dawarich-app

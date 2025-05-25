@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dawarich-db
+spec:
+  selector:
+    matchLabels:
+      app: dawarich-db
+  template:
+    metadata:
+      labels:
+        app: dawarich-db
+    spec:
+      containers:
+        - name: postgres
+          image: postgis/postgis:17-3.5-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: dawarich-secrets
+                  key: postgres-user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dawarich-secrets
+                  key: postgres-password
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: dawarich-config
+                  key: postgres-db
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+            - name: shared-data
+              mountPath: /var/shared
+          livenessProbe:
+            exec:
+              command:
+                - "/bin/sh"
+                - "-c"
+                - "pg_isready -U postgres -d dawarich_development"
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 10
+            failureThreshold: 5
+          resources:
+            limits:
+              memory: "1Gi"
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: dawarich-db-pvc
+        - name: shared-data
+          persistentVolumeClaim:
+            claimName: dawarich-shared-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dawarich-db
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector:
+    app: dawarich-db

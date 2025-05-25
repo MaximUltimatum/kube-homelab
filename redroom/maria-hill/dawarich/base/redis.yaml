@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dawarich-redis
+spec:
+  selector:
+    matchLabels:
+      app: dawarich-redis
+  template:
+    metadata:
+      labels:
+        app: dawarich-redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:7.0-alpine
+        command: ["redis-server"]
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - name: redis-data
+          mountPath: /data
+        livenessProbe:
+          exec:
+            command: ["redis-cli", "--raw", "incr", "ping"]
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 10
+          failureThreshold: 5
+      volumes:
+      - name: redis-data
+        persistentVolumeClaim:
+          claimName: dawarich-shared-pvc

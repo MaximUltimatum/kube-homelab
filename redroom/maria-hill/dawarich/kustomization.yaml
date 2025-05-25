@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
 - base/redis.yaml
 - base/postgres.yaml
-- base/dawarich.yaml.yaml
+- base/dawarich.yaml
 - base/sidekiq.yaml
 - base/pvcs.yaml
 - base/dawarich-sealed-secret.yaml

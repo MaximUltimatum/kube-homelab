@@ -14,7 +14,8 @@ spec:
       containers:
         - name: sidekiq
           image: freikin/dawarich:latest
-          command: ["sidekiq"]
+          command: ["sidekiq-entrypoint.sh"]
+          args: ["sidekiq"]
           envFrom:
             - configMapRef:
                 name: dawarich-config

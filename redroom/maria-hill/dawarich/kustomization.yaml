@@ -5,9 +5,11 @@ kind: Kustomization
 resources:
 - base/redis.yaml
 - base/postgres.yaml
-- base/deployment.yaml
+- base/dawarich.yaml.yaml
 - base/sidekiq.yaml
 - base/pvcs.yaml
+- base/dawarich-sealed-secret.yaml
+- base/config.yaml
 
 
 namespace: maria-hill

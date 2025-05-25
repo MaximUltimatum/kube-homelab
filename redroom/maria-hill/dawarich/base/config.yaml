@@ -17,3 +17,4 @@ data:
   SELF_HOSTED: "true"
   STORE_GEODATA: "true"
   BACKGROUND_PROCESSING_CONCURRENCY: "10"
+  postgres-db: "dawarich"

@@ -8,7 +8,7 @@ data:
   DATABASE_HOST: "dawarich-db"
   DATABASE_NAME: "dawarich"
   MIN_MINUTES_SPENT_IN_CITY: "60"
-  APPLICATION_HOSTS: "localhost"
+  APPLICATION_HOSTS: "localhost,127.0.0.1,tracks,tracks.kingfisher-halfmoon.ts.net"
   TIME_ZONE: "Europe/London"
   APPLICATION_PROTOCOL: "http"
   PROMETHEUS_EXPORTER_ENABLED: "false"

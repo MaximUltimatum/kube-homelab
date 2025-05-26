@@ -9,6 +9,8 @@ data:
   DATABASE_NAME: "dawarich"
   MIN_MINUTES_SPENT_IN_CITY: "60"
   APPLICATION_HOSTS: "localhost,127.0.0.1,tracks,tracks.kingfisher-halfmoon.ts.net"
+  PHOTON_API_HOST: "photon.dawarich.app"
+  PHOTON_API_USE_HTTPS: "true"
   TIME_ZONE: "Europe/London"
   APPLICATION_PROTOCOL: "http"
   PROMETHEUS_EXPORTER_ENABLED: "false"

@@ -20,7 +20,7 @@ spec:
         app: sonoff-zigbee
       containers:
         - name: zigbee2mqtt
-          image: koenkk/zigbee2mqtt:1.37.1
+          image: koenkk/zigbee2mqtt:1.42.0
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
@@ -35,8 +35,6 @@ spec:
               value: "true"
             - name: "ZIGBEE2MQTT_CONFIG_SERIAL_PORT"
               value: "/dev/ttyACM0"
-            - name: "ZIGBEE2MQTT_CONFIG_ADVANCED_NETWORK_KEY"
-          value: "GENERATE"
           securityContext:
             privileged: true
           ports:

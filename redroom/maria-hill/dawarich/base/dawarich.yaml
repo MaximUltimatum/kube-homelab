@@ -30,9 +30,11 @@ spec:
             - name: storage-data
               mountPath: /var/app/storage
           livenessProbe:
-            httpGet:
-              path: /api/v1/health
-              port: 3000
+            exec:
+              command:
+                - "/bin/sh"
+                - "-c"
+                - "wget -qO - http://127.0.0.1:3000/api/v1/health | grep -q '\"status\"\\s*:\\s*\"ok\"'"
             initialDelaySeconds: 30
             periodSeconds: 10
             timeoutSeconds: 10

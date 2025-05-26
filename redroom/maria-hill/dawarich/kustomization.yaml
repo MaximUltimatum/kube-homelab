@@ -10,6 +10,7 @@ resources:
 - base/pvcs.yaml
 - base/dawarich-sealed-secret.yaml
 - base/config.yaml
+- base/tracks-svc.yaml
 
 
 namespace: maria-hill

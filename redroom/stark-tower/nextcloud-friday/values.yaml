@@ -412,8 +412,7 @@ nextcloud:
     type: ClusterIP
     port: 8080
     loadBalancerIP: ""
-    nodePort: nil
-  
+
   ## Enable persistence using Persistent Volume Claims
   ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
   ##

@@ -5,7 +5,7 @@ nextcloud:
   image:
     repository: nextcloud
     flavor: apache
-    tag: "30.0.11"
+    tag: "docker.io/30.0.11"
     pullPolicy: IfNotPresent
     # pullSecrets:
     #   - myRegistrKeySecretName
@@ -60,7 +60,6 @@ nextcloud:
           - friday
     labels: {}
 
-  
   # Allow configuration of lifecycle hooks
   # ref: https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/
   lifecycle: {}

@@ -1,25 +1,26 @@
-image: sknnr/vrising-dedicated-server
-imageTag: latest
-serviceType: LoadBalancer
-resources:
-  requests:
-    memory: 16G
-    cpu: 4.0
-volumes:
-  dataPVC:
-    size: 50Gi
-  storageClassName: ""
-env:
-  serverName: 'Ravens Morrow'
-  gamePort: 27015
-  queryPort: 27016
-  description: 'Ravens Morrow'
-  bindAddress: 0.0.0.0
-  hideIpAddress: true
-  lowerFPSWhenEmpty: true
-  secure: true
-  eosList: true
-  steamList: false
-  gamePreset: "StandardPvP"
-  difficulty: "Difficulty_Normal"
-  saveName: "ravensmorrow"
+vrising-server:
+  image: sknnr/vrising-dedicated-server
+  imageTag: latest
+  serviceType: LoadBalancer
+  resources:
+    requests:
+      memory: 16G
+      cpu: 4.0
+  volumes:
+    dataPVC:
+      size: 50Gi
+    storageClassName: ""
+  env:
+    serverName: 'Ravens Morrow'
+    gamePort: 27015
+    queryPort: 27016
+    description: 'Ravens Morrow'
+    bindAddress: 0.0.0.0
+    hideIpAddress: true
+    lowerFPSWhenEmpty: true
+    secure: true
+    eosList: true
+    steamList: false
+    gamePreset: "StandardPvP"
+    difficulty: "Difficulty_Normal"
+    saveName: "ravensmorrow"

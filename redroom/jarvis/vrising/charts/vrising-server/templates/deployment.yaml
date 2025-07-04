@@ -28,6 +28,8 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         env:
+        - name: LAN_MODE
+          value: "true"
         - name: SERVER_NAME
           value: {{ .Values.env.serverName | squote }}
         {{- with .Values.env.serverPassword }}

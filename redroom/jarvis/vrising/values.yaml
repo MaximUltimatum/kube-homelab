@@ -18,8 +18,8 @@ vrising-server:
     bindAddress: 0.0.0.0
     hideIpAddress: true
     lowerFPSWhenEmpty: true
-    secure: true
-    eosList: true
+    secure: false
+    eosList: false
     steamList: false
     gamePreset: "StandardPvP"
     difficulty: "Difficulty_Normal"

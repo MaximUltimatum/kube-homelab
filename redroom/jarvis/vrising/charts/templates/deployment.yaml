@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Chart.Name }}"
+  labels:
+    app: "{{ .Chart.Name }}"
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ .Chart.Name }}"
+      release: "{{ .Release.Name }}"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Chart.Name }}"
+        release: "{{ .Release.Name }}"
+    spec:
+      containers:
+      - name: "{{ .Chart.Name }}"
+        image: "{{ .Values.image }}:{{ .Values.imageTag }}"
+        imagePullPolicy: Always
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        env:
+        - name: SERVER_NAME
+          value: {{ .Values.env.serverName | squote }}
+        {{- with .Values.env.serverPassword }}
+        - name: SERVER_PASSWORD
+          value: {{ . | squote }}
+        {{- end }}
+        - name: GAME_PORT
+          value: {{ .Values.env.gamePort | squote }}
+        - name: QUERY_PORT
+          value: {{ .Values.env.queryPort | squote }}
+        - name: DESCRIPTION
+          value: {{ .Values.env.description | squote }}
+        - name: BIND_ADDRESS
+          value: {{ .Values.env.bindAddress | squote }}
+        - name: HIDE_IP
+          value: {{ .Values.env.hideIpAddress | squote }}
+        - name: LOWER_FPS_EMPTY
+          value: {{ .Values.env.lowerFPSWhenEmpty | squote }}
+        - name: SECURE
+          value: {{ .Values.env.secure | squote }}
+        - name: EOS_LIST
+          value: {{ .Values.env.eosList | squote }}
+        - name: STEAM_LIST
+          value: {{ .Values.env.steamList | squote }}
+        {{- with .Values.env.gamePreset }}
+        - name: GAME_PRESET
+          value: {{ . | squote }}
+        {{- end }}
+        {{- with .Values.env.difficulty }}
+        - name: DIFFICULTY
+          value: {{ . | squote }}
+        {{- end }}
+        - name: SAVE_NAME
+          value: {{ .Values.env.saveName | squote }}
+        ports:
+        - name: game-port
+          containerPort: {{ .Values.env.gamePort | int }}
+          protocol: UDP
+        - name: query-port
+          containerPort: {{ .Values.env.queryPort | int }}
+          protocol: UDP
+        volumeMounts:
+        - name: data
+          mountPath: /opt/steam/vrising/save-data
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: "{{ .Chart.Name }}-data"

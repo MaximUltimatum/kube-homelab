@@ -1,0 +1,12 @@
+apiVersion: v2
+name: vrising-dedicated-server
+type: application
+version: 0.0.1
+sources:
+  - https://github.com/jsknnr/vrising-server
+description: VRising dedicated server.
+home: https://playvrising.com/
+dependencies:
+  - name: vrising-server
+    version: "*"
+    repository: "file://charts/vrising-server"

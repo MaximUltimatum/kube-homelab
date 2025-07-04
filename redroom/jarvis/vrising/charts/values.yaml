@@ -1,0 +1,27 @@
+image: sknnr/vrising-dedicated-server
+imageTag: latest
+# serviceType should be LoadBalancer or NodePort
+serviceType: LoadBalancer
+resources:
+  requests:
+    memory: 16G
+    cpu: 4.0
+volumes:
+  dataPVC:
+    size: 50Gi
+  storageClassName: ""
+env:
+  serverName: 'V Rising k8s Server'
+  serverPassword: 'picksomethingawesome'
+  gamePort: 27015
+  queryPort: 27016
+  description: 'Super Neat V Rising Server'
+  bindAddress: 0.0.0.0
+  hideIpAddress: true
+  lowerFPSWhenEmpty: true
+  secure: true
+  eosList: true
+  steamList: false
+  gamePreset: "StandardPvP"
+  difficulty: "Difficulty_Normal"
+  saveName: "vrising_world"

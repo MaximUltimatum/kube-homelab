@@ -18,9 +18,9 @@ vrising-server:
     bindAddress: 0.0.0.0
     hideIpAddress: true
     lowerFPSWhenEmpty: true
-    secure: false
-    eosList: false
-    steamList: false
+    secure: true
+    eosList: true
+    steamList: true
     gamePreset: "StandardPvP"
     difficulty: "Difficulty_Normal"
     saveName: "ravensmorrow"

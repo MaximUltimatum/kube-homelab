@@ -32,7 +32,14 @@ spec:
           value: {{ .Values.env.serverName | squote }}
         {{- with .Values.env.serverPassword }}
         - name: SERVER_PASSWORD
+          {{- if .secretKeyRef }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ .secretKeyRef.name }}
+              key: {{ .secretKeyRef.key }}
+          {{- else }}
           value: {{ . | squote }}
+          {{- end }}
         {{- end }}
         - name: GAME_PORT
           value: {{ .Values.env.gamePort | squote }}

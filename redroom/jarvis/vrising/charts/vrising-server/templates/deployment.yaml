@@ -22,14 +22,16 @@ spec:
         release: "{{ .Release.Name }}"
     spec:
       containers:
+      - name: netshoot
+        image: nicolaka/netshoot
+        command: ["/bin/bash"]
+        args: ["-c", "while true; do ping localhost; sleep 60;done"]
       - name: "{{ .Chart.Name }}"
         image: "{{ .Values.image }}:{{ .Values.imageTag }}"
         imagePullPolicy: Always
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         env:
-        - name: VR_LAN_MODE
-          value: "true"
         - name: SERVER_NAME
           value: {{ .Values.env.serverName | squote }}
         {{- with .Values.env.serverPassword }}

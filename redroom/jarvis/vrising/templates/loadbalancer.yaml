@@ -13,9 +13,9 @@ spec:
   ports:
     - name: game-port
       port: 27015
-      protocol: TCP
+      protocol: UDP
     - name: query-port
       port: 27016
-      protocol: TCP
+      protocol: UDP
   selector:
     app: vrising-dedicated-server

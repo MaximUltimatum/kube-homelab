@@ -12,6 +12,10 @@ vrising-server:
     storageClassName: ""
   env:
     serverName: 'Ravens Morrow'
+    serverPassword:
+      secretKeyRef:
+        name: vrising-server-secret
+        key: server-password
     gamePort: 27015
     queryPort: 27016
     description: 'Ravens Morrow'

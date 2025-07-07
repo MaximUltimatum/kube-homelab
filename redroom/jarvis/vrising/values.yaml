@@ -25,6 +25,6 @@ vrising-server:
     secure: true
     eosList: true
     steamList: true
-    gamePreset: "StandardPvP"
-    difficulty: "Difficulty_Normal"
-    saveName: "morrowsraven"
+    gamePreset: ""
+    difficulty: ""
+    saveName: "ravensmorrow"

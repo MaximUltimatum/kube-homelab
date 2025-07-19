@@ -1,0 +1,39 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: project-tahiti
+
+configMapGenerator:
+  - envs:
+    - base/.env
+    name: karakeep-configuration
+
+resources:
+- base/web-deployment.yaml
+- base/web-service.yaml
+- base/chrome-deployment.yaml
+- base/chrome-service.yaml
+- base/meilisearch-deployment.yaml
+- base/meilisearch-service.yaml
+- base/meilisearch-pvc.yaml
+- base/data-pvc.yaml
+- base/tailscale-service.yaml
+- base/sealed-karakeep-secret.yaml
+
+replacements:
+- source:
+    fieldPath: data.KARAKEEP_VERSION
+    kind: ConfigMap
+    name: karakeep-configuration
+    version: v1
+  targets:
+  - fieldPaths:
+    - spec.template.spec.containers.0.image
+    options:
+      delimiter: ':'
+      index: 1
+    select:
+      group: apps
+      kind: Deployment
+      name: web
+      version: v1

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: gathio-pvc
-  namespace: forda-boys
+  namespace: pym
 spec:
   accessModes:
     - ReadWriteOnce
@@ -14,7 +14,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: gathio-db-pvc
-  namespace: forda-boys
+  namespace: pym
 spec:
   accessModes:
     - ReadWriteOnce

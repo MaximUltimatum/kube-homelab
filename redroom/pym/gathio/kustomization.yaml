@@ -9,4 +9,4 @@ resources:
 - base/gathio-svc.yaml
 - base/gathio-config.yaml
 
-namespace: forda-boys
+namespace: pym

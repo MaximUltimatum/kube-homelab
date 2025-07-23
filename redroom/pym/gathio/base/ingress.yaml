@@ -3,10 +3,12 @@ kind: Ingress
 metadata:
   name: gathio-ingress
   annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   ingressClassName: nginx
   rules:
-    - host: daboys.maximstroud.de
+    - host: events.maximstroud.de
       http:
         paths:
           - path: /
@@ -15,8 +17,8 @@ spec:
               service:
                 name: gathio-svc
                 port:
-                  number: 443
+                  number: 80
   tls:
     - hosts:
-        - daboys.maximstroud.de
+        - events.maximstroud.de
       secretName: maximstroud.de-cert

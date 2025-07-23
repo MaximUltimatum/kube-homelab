@@ -17,7 +17,7 @@ spec:
               service:
                 name: gathio-svc
                 port:
-                  number: 80
+                  number: 443
   tls:
     - hosts:
         - events.maximstroud.de

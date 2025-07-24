@@ -8,5 +8,6 @@ resources:
 - base/gathio-storage.yaml
 - base/gathio-svc.yaml
 - base/gathio-config.yaml
+- base/gathio-cert.yaml
 
 namespace: pym

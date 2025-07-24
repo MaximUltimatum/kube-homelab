@@ -12,6 +12,7 @@ spec:
       - selector:
             dnsZones:
               - "*.maximstroud.de"
+              - "events.maximstroud.de"
         dns01:
           cloudflare:
             apiTokenSecretRef:

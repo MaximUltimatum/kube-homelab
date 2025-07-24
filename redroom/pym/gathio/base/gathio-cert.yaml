@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: maximstroud.de-cert
-  namespace: eternal-library
+  name: events.maximstroud.de-cert
+  namespace: pym
 spec:
   dnsNames:
     - "events.maximstroud.de"
-  secretName: maximstroud.de-cert
+  secretName: events.maximstroud.de-cert
   issuerRef:
     name: letsencrypt-cloudflare-issuer
     kind: ClusterIssuer

@@ -5,7 +5,7 @@ metadata:
   namespace: eternal-library
 spec:
   dnsNames:
-    - "*.maximstroud.de"
+    - "events.maximstroud.de"
   secretName: maximstroud.de-cert
   issuerRef:
     name: letsencrypt-cloudflare-issuer

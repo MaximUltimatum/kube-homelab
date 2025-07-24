@@ -1,0 +1,13 @@
+# Note, you need to make this thing for EACH NAMESPACE you want the cert to be valid for
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: maximstroud.de-cert
+  namespace: eternal-library
+spec:
+  dnsNames:
+    - "*.maximstroud.de"
+  secretName: maximstroud.de-cert
+  issuerRef:
+    name: letsencrypt-cloudflare-issuer
+    kind: ClusterIssuer

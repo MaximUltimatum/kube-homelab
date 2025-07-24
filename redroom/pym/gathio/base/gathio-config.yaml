@@ -12,7 +12,7 @@
        port = "443" # No port for now?
        email = "stroudmcdermott@gmail.com"
        site_name = "McDermott Events"
-       is_federated = false
+       is_federated = true
        # Events will be deleted this many days after they have ended. Set to 0 to
        # disable automatic deletion (old events will never be deleted).
        delete_after_days = 7
